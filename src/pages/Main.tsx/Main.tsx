@@ -50,6 +50,10 @@ const Main = (props: Props) => {
 
     }
 
+    const getGenreFeatured = (genre: string) => {
+
+    }
+
     React.useEffect(() => {
         setFeatured();
         setDefault();
