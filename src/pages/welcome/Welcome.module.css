@@ -1,0 +1,31 @@
+.container{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    padding: 0 4rem;
+
+}
+
+.heading{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+   gap: 2rem;
+    width: 600px;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.heading h1{
+    line-height: 5.5rem;
+    font-size: 5rem;
+    font-weight: 500;
+}
+.skillholder{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,3 +1,10 @@
+:root{
+  --var1: #BEE9E8;
+  --var2: #62B6CB;
+  --var3: #1B4965;
+  --var4: #CAE9FF;
+}
+
 .App {
   text-align: center;
 }
