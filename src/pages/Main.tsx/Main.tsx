@@ -2,7 +2,7 @@ import React from 'react'
 import NavBar from '../../components/navbar/NavBar'
 import styles from './Main.module.css'
 import MovieCard from '../../components/MovieCard/MovieCard'
-import { Button, ButtonGroup, Text, Stack, Badge, Image, Heading } from '@chakra-ui/react'
+import { Box, Button, useColorModeValue, Text, Stack, Badge, Image, Heading } from '@chakra-ui/react'
 type Props = {}
 
 const options = {
@@ -18,6 +18,8 @@ const Main = (props: Props) => {
     const [defaultMovies, setDefaultMovies] = React.useState<any[]>([]);
     const [featuredMovie, setFeaturedMovie] = React.useState<any>([]);
     const [featuredDesc, setFeaturedDesc] = React.useState<string>("");
+
+    const featuredBg = useColorModeValue('#EDF2F7', 'RGBA(0, 0, 0, 0.64)');
 
     const setFeatured = () => {
         fetch('https://moviesdatabase.p.rapidapi.com/titles?info=mini_info&limit=1&page=1&year=2022&list=top_rated_250', options)
@@ -54,7 +56,8 @@ const Main = (props: Props) => {
     }, [])
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container}
+        >
             <NavBar />
             <div className={styles.featured}>
                 {featuredMovie.primaryImage &&
@@ -65,32 +68,35 @@ const Main = (props: Props) => {
                         minWidth='40rem'
                         opacity='0.9'
                         objectFit='cover' />}
-                <div className={styles.featuredtext}>
+                <Box className={styles.featuredtext}
+                    backgroundColor={featuredBg}
+                >
+
                     {featuredMovie.titleText &&
                         <Heading
-                            color="#2B6CB0"
+                            colorScheme="blue"
                             fontSize="3.5rem">
                             {featuredMovie.titleText.text}
                         </Heading>
-
                     }
-            
+                    <Heading>
+                        Featured
+                    </Heading>
                     <Text
-                        maxW="800px"
-                    >{featuredDesc}
+                        maxW="800px">
+                        {featuredDesc}
                     </Text>
 
                     <Button size='lg' colorScheme='blue'>
                         More
                     </Button>
-
-
-                </div>
+                </Box>
 
             </div>
             <Stack direction="row"
                 marginBottom='2rem'>
-                <Badge backgroundColor="#2B6CB0"
+                <Badge
+                    colorScheme="blue"
                     width="4rem"
                     display="flex"
                     alignItems="center"
@@ -104,7 +110,7 @@ const Main = (props: Props) => {
 
                 {defaultMovies.map((item, index) => {
                     return item.primaryImage && item.primaryImage.url ?
-                        <MovieCard title={''} imgurl={item.primaryImage.url} year={''} />
+                        <MovieCard key={index} title={''} imgurl={item.primaryImage.url} year={''} />
                         : null;
                 })}
             </div>

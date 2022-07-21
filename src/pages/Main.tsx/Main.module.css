@@ -9,7 +9,7 @@
 .featured{
     min-height: 20rem;
     max-height: 50vh;
-    background-color: #EDF2F7;
+   
     overflow: hidden;
     margin-bottom: 2rem;
     display: flex;
@@ -24,7 +24,7 @@
     text-align: left;
     flex-direction: column;
     padding: 3rem;
-    gap: 3rem;
+    gap: 1rem;
     
 
 }
