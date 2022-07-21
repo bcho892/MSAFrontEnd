@@ -1,0 +1,37 @@
+.container{
+    height: 100;
+    padding-top: 3.5rem;
+    display: flex;
+    flex-direction: column;
+   
+}
+
+.featured{
+    min-height: 20rem;
+    max-height: 50vh;
+    background-color: #EDF2F7;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    display: flex;
+   
+}
+
+.featuredtext{
+    display: flex;
+    flex: 100%;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    flex-direction: column;
+    padding: 3rem;
+    gap: 3rem;
+    
+
+}
+
+.movierow{
+    display: flex;
+    overflow-x: scroll;
+    gap: 1rem;
+    justify-self: flex-end;
+}

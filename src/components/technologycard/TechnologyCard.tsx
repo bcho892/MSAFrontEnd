@@ -1,12 +1,13 @@
 import React from 'react'
 import { Box } from '@chakra-ui/react'
+import { CheckCircleIcon } from '@chakra-ui/icons'
 type Props = {
     skill: string;
     description: string;
     icon: any;
 }
 
-export default function TechnologyCard({ skill, description}: Props) {
+export default function TechnologyCard({ skill, description }: Props) {
     return (
         <Box display='flex'
             width='20rem'
@@ -17,17 +18,24 @@ export default function TechnologyCard({ skill, description}: Props) {
             borderWidth='1px'
             borderRadius='lg'
             gap='1rem'>
-            
+
 
             <Box
-
+                display="flex"
+                flexDirection="column"
+                justifyContent="center"
+                alignItems="center"
+                gap="1rem"
                 fontWeight='semibold'
                 letterSpacing='wide'
                 fontSize='2rem'
                 textTransform='uppercase'
                 ml='2'
             >
+                <CheckCircleIcon />
                 {skill}
+
+
             </Box>
             <Box
                 color='gray.500'
@@ -40,6 +48,6 @@ export default function TechnologyCard({ skill, description}: Props) {
                 {description}
             </Box>
         </Box>
-       
+
     )
 }

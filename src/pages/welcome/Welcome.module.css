@@ -1,28 +1,29 @@
-.container{
+.container {
     flex-direction: column;
     display: flex;
     align-items: center;
     padding: 0 4rem;
-
+    margin-top: 8rem;
 }
 
-.heading{
+.heading {
     min-height: 100vh;
     display: flex;
-    justify-content: center;
-   gap: 2rem;
-    width: 600px;
+
+    gap: 2rem;
+    
     flex-direction: column;
     align-items: center;
 
 }
 
-.heading h1{
+.heading h1 {
     line-height: 5.5rem;
     font-size: 5rem;
     font-weight: 500;
 }
-.skillholder{
+
+.skillholder {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
