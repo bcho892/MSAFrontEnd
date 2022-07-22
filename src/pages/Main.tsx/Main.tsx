@@ -51,7 +51,7 @@ const Main = (props: Props) => {
     }
 
     const getGenreFeatured = (genre: string) => {
-
+        fetch('https://moviesdatabase.p.rapidapi.com/titles?info=mini_info&limit=10&page=1&titleType=movie&list=most_pop_movies', options)
     }
 
     React.useEffect(() => {
@@ -118,6 +118,19 @@ const Main = (props: Props) => {
                         : null;
                 })}
             </div>
+            <Stack direction="row"
+                marginBottom='2rem'>
+                <Badge
+                    colorScheme="blue"
+                    width="4rem"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"></Badge>
+
+                <Heading
+                >Action
+                </Heading>
+            </Stack>
 
         </div>
     )

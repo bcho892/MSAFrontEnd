@@ -34,4 +34,5 @@
     overflow-x: scroll;
     gap: 1rem;
     justify-self: flex-end;
+    margin-bottom: 2rem;
 }
