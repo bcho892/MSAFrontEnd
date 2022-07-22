@@ -1,26 +1,45 @@
 import React from 'react'
-import { Box, Image } from '@chakra-ui/react'
+import styles from './MovieCard.module.css'
+import { Box, Image, Heading } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
+
 type Props = {
-    title: string;
+    title: string,
     imgurl: string;
     year: string;
+    id: string;
 }
 
-function MovieCard({ imgurl }: Props) {
+function MovieCard({ id, title, imgurl, year }: Props) {
+    const navigate = useNavigate();
+    const toMovie = React.useCallback(() => navigate(`/movie/${id}`, { replace: false }), [navigate]);
     return (
         <Box
-        minWidth='13rem'
+            onClick={toMovie}
+            className={styles.container}
+            display='flex'
+            justifyContent='center'
+            alignItems='center'
+            minWidth='13rem'
             objectFit='cover'
             borderWidth='1px'
             borderRadius='lg'
             overflow='hidden'>
+
+            <Heading className={styles.extrainfo}
+                fontSize="1.5rem"
+                color='white' >
+                {title} <br />
+                ({year})
+            </Heading>
+
             <Image
+                className={styles.overlay}
                 height='20rem'
-                
                 objectFit='cover'
                 src={imgurl}
-                alt='img'></Image>
-        </Box>
+                alt='img' />
+        </Box >
     )
 }
 

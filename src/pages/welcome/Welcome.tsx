@@ -28,13 +28,13 @@ export default function Welcome({ }: Props) {
             <div className={styles.container}>
                 <div className={styles.heading}>
                     <Heading
-                        fontSize={{ base: "3.5rem", lg: "6rem" }}
+                        fontSize={{ base: "3.5rem", lg: "6rem"}}
                         maxWidth="800px">
                         Welcome to my MSA project
                     </Heading>
                     <Text
                         fontSize='2xl'
-                        width='500px'
+                        maxWidth='500px'
                     >Here I will try to apply the skills that I have learned from the MSA program</Text>
                     <ButtonGroup
                     >
