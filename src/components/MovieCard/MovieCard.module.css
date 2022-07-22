@@ -1,0 +1,25 @@
+.container:hover .extrainfo{
+    opacity: 1;
+    
+}
+
+.extrainfo{
+    position: absolute;
+    z-index: 900;
+    opacity: 0;
+    transition: opacity 1s;
+    max-width: 12rem;
+    user-select: none;
+}
+.overlay{
+    transition: all 1s;
+}
+
+.container{
+    cursor: pointer;
+}
+
+.container:hover .overlay{
+    transform: scale(1.1);
+    filter: brightness(0.7);
+}
