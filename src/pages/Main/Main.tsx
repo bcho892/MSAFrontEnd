@@ -2,16 +2,23 @@ import React from 'react'
 import NavBar from '../../components/navbar/NavBar'
 import styles from './Main.module.css'
 import MovieCard from '../../components/MovieCard/MovieCard'
-import { CircularProgress, CircularProgressLabel, Box, Button, useColorModeValue, Text, Stack, Badge, Image, Heading } from '@chakra-ui/react'
+import {
+    Box,
+    Button,
+    useColorModeValue,
+    Text,
+    Stack,
+    Badge,
+    Image,
+    Heading,
+    Progress
+} from '@chakra-ui/react'
+import { options } from '../../contexts/APIKey'
+import { useNavigate } from "react-router-dom";
+
 type Props = {}
 
-const options = {
-    method: 'GET',
-    headers: {
-        'X-RapidAPI-Key': '4f7cae7f7fmsh719be4d5125f452p10def8jsnd0e1b8655d1d',
-        'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
-    }
-};
+
 
 type Category = {
     name: string,
@@ -27,6 +34,9 @@ const Main = (props: Props) => {
     const [featuredMovie, setFeaturedMovie] = React.useState<any>([]);
     const [additionalFeatured, setAdditionalFeatured] = React.useState<any[][]>([]);
     const [featuredDesc, setFeaturedDesc] = React.useState<string>("");
+
+    const navigate = useNavigate();
+    const toFeatured = (id: number) => { navigate(`/movie/${id}`); }; // solution adapted from https://stackoverflow.com/questions/68911432/
 
     const featuredBg = useColorModeValue('#EDF2F7', 'RGBA(0, 0, 0, 0.64)');
 
@@ -99,12 +109,13 @@ const Main = (props: Props) => {
                     backgroundColor={featuredBg}
                 >
 
-                    {featuredMovie.titleText &&
+                    {featuredMovie.titleText ?
                         <Heading
                             colorScheme="blue"
                             fontSize="3.5rem">
                             {featuredMovie.titleText.text}
-                        </Heading>
+                        </Heading> :
+                        <Progress width="50rem" isIndeterminate />
                     }
                     <Heading>
                         Featured
@@ -114,7 +125,10 @@ const Main = (props: Props) => {
                         {featuredDesc}
                     </Text>
 
-                    <Button size='lg' colorScheme='blue'>
+                    <Button
+                        size='lg'
+                        colorScheme='blue'
+                        onClick={() => toFeatured(featuredMovie.id)}>
                         More
                     </Button>
                 </Box>
@@ -137,17 +151,17 @@ const Main = (props: Props) => {
                 backgroundColor={featuredBg}
             >
 
-                {defaultMovies.map((item, index) => {
+                {defaultMovies.length > 0 ? defaultMovies.map((item, index) => {
                     return item.primaryImage && item.primaryImage.url ?
                         <MovieCard key={item.id} title={item.titleText.text}
                             imgurl={item.primaryImage.url}
                             year={item.releaseYear.year}
                             id={item.id} />
                         : null;
-                })}
+                }) : <Progress width="50rem" isIndeterminate />}
             </Box>
 
-            {additionalFeatured.map((item, index) => {
+            {additionalFeatured.length > 0 ? additionalFeatured.map((item, index) => {
 
                 let currentRow = item.map((genre, index1) => {
                     return genre.primaryImage && genre.primaryImage.url ?
@@ -177,7 +191,7 @@ const Main = (props: Props) => {
                         {currentRow}
                     </Box>
                 </div>;
-            })}
+            }) : <Progress width="50rem" isIndeterminate />}
 
 
 
