@@ -2,16 +2,20 @@ import React from 'react'
 import NavBar from '../../components/navbar/NavBar'
 import styles from './Search.module.css'
 import SearchResult from '../../components/SearchResult/SearchResult'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { options } from '../../contexts/APIKey'
+import HomeIcon from '../../components/HomeIcon/HomeIcon'
 import {
     Box,
     Heading,
     Text,
     useColorModeValue,
     Stack,
-    Badge
+    Badge,
+    IconButton,
+    Tooltip
 } from '@chakra-ui/react'
+
 function Search() {
 
     const containerColor = useColorModeValue('gray.100', 'RGBA(255, 255, 255, 0.04)');
@@ -19,9 +23,8 @@ function Search() {
     const bgColor = useColorModeValue('white', 'RGBA(255, 255, 255, 0.04)');
     const [searchPage, setSearchPage] = React.useState<any[]>([]);
     let { keyword, limit, year, genre } = useParams();
-    let yearBadge;
-    let genreBadge;
-
+    const navigate = useNavigate();
+    const toMain = React.useCallback(() => navigate('/main', { replace: false }), [navigate]);
 
     const makeSearch = () => {
         let yearParam: string = "";
@@ -40,14 +43,10 @@ function Search() {
 
         }
 
-
         fetch(`https://moviesdatabase.p.rapidapi.com/titles/search/title/${keyword}?info=base_info&limit=${limit}&page=1&titleType=movie${yearParam}${genreParam}`, options)
             .then(response => response.json())
             .then(response => {
                 setSearchPage(response.results)
-                console.log(
-                    response.results
-                )
             })
             .catch(err => console.error(err));
     }
@@ -67,27 +66,38 @@ function Search() {
                 maxW="50rem"
                 display="flex"
                 flexDir="column">
-                <Box padding="1.5rem">
-                    <Heading>
-                        Results for: {keyword}
-                    </Heading>
-                    <Stack direction="row" margin="0.25rem 0">
-                        {year && genre && <Badge colorScheme="blue" variant="outline">YEAR: {year}</Badge>}
-                        {year && !/^\d+$/.test(year) && !genre &&
-                            <Badge colorScheme="blue" variant="outline">GENRE: {year}</Badge>}
-                        {year && /^\d+$/.test(year) && !genre &&
-                            <Badge colorScheme="blue" variant="outline">YEAR: {year}</Badge>}
-                        {genre && <Badge colorScheme="blue" variant="outline">GENRE: {genre}</Badge>}
-                    </Stack>
+                <Box padding="1.5rem"
+                    display="flex"
+                    alignItems="center">
+                    <Box display="flex"
+                        flexDir="column">
+                        <Heading>
+                            Results for: {keyword}
+                        </Heading>
+                        <Stack direction="row" margin="0.25rem 0">
+                            {year && genre && <Badge colorScheme="blue" variant="outline">YEAR: {year}</Badge>}
+                            {year && !/^\d+$/.test(year) && !genre &&
+                                <Badge colorScheme="blue" variant="outline">GENRE: {year}</Badge>}
+                            {year && /^\d+$/.test(year) && !genre &&
+                                <Badge colorScheme="blue" variant="outline">YEAR: {year}</Badge>}
+                            {genre && <Badge colorScheme="blue" variant="outline">GENRE: {genre}</Badge>}
+                        </Stack>
 
-                    <Text>
-                        Max {limit} Results ({searchPage.length} found)
-                    </Text>
+                        <Text>
+                            Max {limit} Results ({searchPage.length} found)
+                        </Text>
+                    </Box>
+                    <Tooltip label="Go back">
+                        <IconButton
+                            aria-label='go main'
+                            icon={<HomeIcon />}
+                            onClick={toMain}
+                            marginLeft="auto" />
+                    </Tooltip>
                 </Box>
                 <Box
                     display="flex"
                     flexDirection="column"
-
                     overflowY="auto">
                     {searchPage.map((item, index) => {
                         return <SearchResult key={item.id}

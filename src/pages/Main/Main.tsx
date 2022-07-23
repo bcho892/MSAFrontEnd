@@ -11,14 +11,13 @@ import {
     Badge,
     Image,
     Heading,
-    Progress
+    Progress,
+    Tooltip,
+    useMediaQuery
+
 } from '@chakra-ui/react'
 import { options } from '../../contexts/APIKey'
 import { useNavigate } from "react-router-dom";
-
-type Props = {}
-
-
 
 type Category = {
     name: string,
@@ -29,7 +28,7 @@ const categories: Category[] = [{ name: "Upcoming", functionOption: "/x/upcoming
 { name: "Action", functionOption: "?info=mini_info&limit=10&page=1&titleType=movie&genre=Action&year=2022" },
 { name: "Comedy", functionOption: "?titleType=movie&info=mini_info&year=2022&genre=Crime&page=2&limit=10" }];
 
-const Main = (props: Props) => {
+const Main = () => {
     const [defaultMovies, setDefaultMovies] = React.useState<any[]>([]);
     const [featuredMovie, setFeaturedMovie] = React.useState<any>([]);
     const [additionalFeatured, setAdditionalFeatured] = React.useState<any[][]>([]);
@@ -37,18 +36,8 @@ const Main = (props: Props) => {
 
     const navigate = useNavigate();
     const toFeatured = (id: number) => { navigate(`/movie/${id}`); }; // solution adapted from https://stackoverflow.com/questions/68911432/
-
+    const [smallScreen] = useMediaQuery('(max-width: 850px)');
     const featuredBg = useColorModeValue('#EDF2F7', 'RGBA(0, 0, 0, 0.64)');
-
-    const setFeatured = () => {
-        fetch('https://moviesdatabase.p.rapidapi.com/titles?info=mini_info&limit=1&page=1&year=2022&list=top_rated_250', options)
-            .then(response => response.json())
-            .then(response => {
-                setFeaturedMovie(response.results[0])
-                setFeaturedText(response.results[0].id)
-            })
-            .catch(err => console.error(err));
-    }
 
     const setFeaturedText = (id: string) => {
         fetch(`https://moviesdatabase.p.rapidapi.com/titles/${id}?info=base_info`, options)
@@ -62,7 +51,6 @@ const Main = (props: Props) => {
         fetch('https://moviesdatabase.p.rapidapi.com/titles?info=mini_info&limit=10&page=1&titleType=movie&list=most_pop_movies', options)
             .then(response => response.json())
             .then(response => {
-                console.log(response.results)
                 setDefaultMovies(response.results)
             })
             .catch(err => console.error(err));
@@ -83,14 +71,23 @@ const Main = (props: Props) => {
     }
 
     React.useEffect(() => {
+        fetch('https://moviesdatabase.p.rapidapi.com/titles?info=mini_info&limit=1&page=1&year=2022&list=top_rated_250', options)
+            .then(response => response.json())
+            .then(response => {
+                setFeaturedMovie(response.results[0])
+                setFeaturedText(response.results[0].id)
+            })
+            .catch(err => console.error(err));
         getGenreFeatured();
-        setFeatured();
         setDefault();
-
     }, [])
-    React.useEffect(() => {
 
-    }, [additionalFeatured])
+    if (featuredMovie === []) {
+        return (
+            <Progress width="80%" isIndeterminate />
+        )
+    }
+
     return (
         <div className={styles.container}
         >
@@ -101,39 +98,45 @@ const Main = (props: Props) => {
                         src={featuredMovie.primaryImage.url}
                         alt=''
                         maxWidth='50vw'
-                        minWidth='40rem'
+                        minWidth='20rem'
                         opacity='0.9'
                         objectFit='cover' />
                 }
                 <Box className={styles.featuredtext}
-                    backgroundColor={featuredBg}
+                    backgroundColor={smallScreen ? "transparent" : featuredBg}
                 >
 
                     {featuredMovie.titleText ?
-                        <Heading
-                            colorScheme="blue"
-                            fontSize="3.5rem">
-                            {featuredMovie.titleText.text}
-                        </Heading> :
-                        <Progress width="50rem" isIndeterminate />
-                    }
-                    <Heading>
-                        Featured
-                    </Heading>
-                    <Text
-                        maxW="800px">
-                        {featuredDesc}
-                    </Text>
+                        <>
+                            <Heading
+                                size={smallScreen ? "2xl" : "3xl"}>
+                                {featuredMovie.titleText.text}
+                            </Heading>
+                            <Heading size='md'>
+                                Featured
+                            </Heading>
+                            <Text
+                                fontSize="md"
+                                maxW="800px">
+                                {featuredDesc}
+                            </Text>
+                            <Tooltip label={`See |${featuredMovie.titleText.text}|'s details`}>
+                                <Button
+                                    size='lg'
+                                    colorScheme={smallScreen ? 'white' : 'blue'}
 
-                    <Button
-                        size='lg'
-                        colorScheme='blue'
-                        onClick={() => toFeatured(featuredMovie.id)}>
-                        More
-                    </Button>
+                                    variant={smallScreen ? "outline" : "solid"}
+                                    onClick={() => toFeatured(featuredMovie.id)}>
+                                    More
+                                </Button>
+                            </Tooltip>
+                        </> :
+                        <Progress width="80%" isIndeterminate />
+                    }
                 </Box>
 
             </div>
+
             <Stack direction="row"
                 marginBottom='2rem'>
                 <Badge
@@ -147,18 +150,19 @@ const Main = (props: Props) => {
                 >Currently Popular
                 </Heading>
             </Stack>
+
             <Box className={styles.movierow}
                 backgroundColor={featuredBg}
             >
 
-                {defaultMovies.length > 0 ? defaultMovies.map((item, index) => {
+                {defaultMovies.map((item, index) => {
                     return item.primaryImage && item.primaryImage.url ?
                         <MovieCard key={item.id} title={item.titleText.text}
                             imgurl={item.primaryImage.url}
                             year={item.releaseYear.year}
                             id={item.id} />
                         : null;
-                }) : <Progress width="50rem" isIndeterminate />}
+                })}
             </Box>
 
             {additionalFeatured.length > 0 ? additionalFeatured.map((item, index) => {

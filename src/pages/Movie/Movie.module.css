@@ -13,3 +13,22 @@
     max-width: 30rem;
     padding: 1rem;
 }
+
+@media only screen and (max-width: 850px) {
+    .infoholder {
+        flex-direction: column;
+    }
+    .movieimage{
+        height: 15rem;
+        display: flex;
+        overflow: hidden;
+        align-items: center;
+    }
+    .movieimage img{
+
+        width: 30rem;
+    }
+    .bottomdivider{
+        display: none;
+    }
+}

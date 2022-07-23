@@ -4,6 +4,9 @@ import styles from './Welcome.module.css'
 import TechnologyCard from '../../components/technologycard/TechnologyCard';
 import { useNavigate } from 'react-router-dom';
 import { ExternalLinkIcon, ArrowForwardIcon } from '@chakra-ui/icons'
+import detailsEx from './chakmoviesdet.png'
+import searchEx from './chakmoviessearch.png'
+import mainEx from './chakmoviesmain.png'
 import {
     Button,
     ButtonGroup,
@@ -11,7 +14,9 @@ import {
     Text,
     Divider,
     Box,
-    useColorMode
+    useColorMode,
+    Image,
+    Link
 } from '@chakra-ui/react'
 
 type Tech = {
@@ -23,7 +28,11 @@ const techUsed: Tech[] = [{ name: "chakraUI", description: "I used ChakraUI as m
 { name: "MoviesDatabase", description: "I used this API (Courtesy of rapidapi.com & Adriano Massimo) to help retrieve movie data for this web app." },
 { name: "Github", description: "I used GitHub to maintain a backup of my work, as well as being able to keep track of my progress" },
 { name: "TS React", description: "This app was created using React.js, while also taking advantage of TS's static typing" },
-{ name: "User Input", description: "Users are able to interact with the Web App by making use of the search feature (top right)" }]
+{ name: "User Input", description: "Users are able to interact with the Web App by making use of the search feature (top right)" },]
+
+const openLink = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+}
 
 export default function Welcome() {
     const navigate = useNavigate();
@@ -35,24 +44,33 @@ export default function Welcome() {
             <div className={styles.container}>
                 <div className={styles.heading}>
                     <Heading
-                        fontSize={{ base: "3.5rem", lg: "6rem" }}
+
+                        size="4xl"
                         maxWidth="800px">
-                        My MSA Assignment
+
+                        <span className={styles.msa}>MSA</span> Assignment
+
                     </Heading>
                     <Heading
-                        size="2xl">
-                        FrontEnd
+                        size="xl"
+                        color={colorMode === "light" ? "gray.700" : "white"}>
+                        Phase 2 Front End
                     </Heading>
                     <Text
-                        fontSize='2xl'
+                        fontSize='xl'
                         maxWidth='500px'
-                    >Here I will try to apply the skills that I have learned from the MSA program</Text>
+                        padding="0 1rem"
+                    >ChakMovies is a Web App that allows users to search for details about Movies.
+                        Made by <Link color='blue.500' onClick={() => openLink("https://github.com/bcho892")}>bcho892</Link>.</Text>
                     <ButtonGroup
                     >
                         <Button size='lg' rightIcon={<ArrowForwardIcon />} colorScheme='blue' onClick={toMain}>
                             To App
                         </Button>
-                        <Button size='lg' rightIcon={<ExternalLinkIcon />}>Github</Button>
+                        <Button size='lg'
+                            rightIcon={<ExternalLinkIcon />}
+                            onClick={() => openLink("https://github.com/bcho892/MSAFrontEnd")}
+                        >Github</Button>
                     </ButtonGroup>
 
                     <Heading
@@ -61,7 +79,7 @@ export default function Welcome() {
                     </Heading>
                     <Divider />
                     <Box bg={colorMode === 'light' ? "gray.200" : "blackAlpha.300"} borderRadius="lg"
-                        padding="2rem">
+                        padding="1rem">
                         <div className={styles.skillholder}>
                             {techUsed.map((value, index) => {
                                 return <TechnologyCard
@@ -73,19 +91,24 @@ export default function Welcome() {
                         </div>
 
                     </Box>
-                    <Divider />
+
                     <Heading>How my App works </Heading>
                     <Divider />
-                    <Text fontSize="xl" maxW="800px">
-                        Using the MoviesDatabase API, I have attempted to create a
-                        site that resembles that of a streaming site (e.g Netflix).
+                    <Text fontSize="xl" maxWidth="800px"
+                        padding="0 1rem"
+                    >
+                        Using the <Link color='blue.500' onClick={() => openLink("https://rapidapi.com/SAdrian/api/moviesdatabase/")}>MoviesDatabase API</Link>,
+                        I have attempted to create a site that resembles that of a streaming site (e.g Netflix).
                         Users are able to both search for as well as explore already popular shows.
-
                     </Text>
+                    <Image src={detailsEx} />
+                    <Image src={searchEx} />
+                    <Image src={mainEx}
+                        marginBottom="2rem" />
                 </div>
 
 
             </div>
-        </div>
+        </div >
     )
 }

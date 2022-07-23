@@ -30,3 +30,12 @@
     justify-content: center;
     align-items: center;
 }
+
+.container img{
+    border-radius: 10px;
+    
+}
+
+.msa{
+    color: #2B6CB0;
+}

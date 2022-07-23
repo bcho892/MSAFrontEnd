@@ -14,7 +14,7 @@ export default function TechnologyCard({ skill, description }: Props) {
     const { colorMode } = useColorMode();
     return (
         <Box display='flex'
-            width='20rem'
+            maxWidth='20rem'
             flexDirection='column'
             alignContent='center'
             justifyContent='center'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { options } from '../../contexts/APIKey'
 import NavBar from '../../components/navbar/NavBar'
 import {
@@ -14,8 +14,12 @@ import {
     StatHelpText,
     StatGroup,
     Image,
-    Progress
+    Progress,
+    IconButton,
+    ButtonGroup,
+    Tooltip,
 } from '@chakra-ui/react'
+import HomeIcon from '../../components/HomeIcon/HomeIcon'
 import styles from './Movie.module.css'
 
 const formatTime = (seconds: number): string => {
@@ -50,11 +54,13 @@ function Movie() {
     let { id } = useParams()
     const [movieInfo, setMovieInfo] = React.useState<any>({});
     const [director, setDirector] = React.useState<string>("");
+    const navigate = useNavigate();
+    const toMain = React.useCallback(() => navigate('/main', { replace: false }), [navigate]);
+
     const getMovieInfo = () => {
         fetch(`https://moviesdatabase.p.rapidapi.com/titles/${id}?info=base_info`, options)
             .then(response => response.json())
             .then(response => {
-                console.log(response);
                 setMovieInfo(response.results);
             })
             .catch(err => console.error(err));
@@ -80,14 +86,19 @@ function Movie() {
                 <Box display="flex"
                     borderRadius="lg"
                     borderWidth="1px"
-                    overflow="hidden">
-
-                    <Image width="20rem" src={movieInfo.primaryImage ? movieInfo.primaryImage.url :
-                        "https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg"}
-                        alt="" />
+                    overflow="hidden"
+                    className={styles.infoholder}>
+                    <Box className={styles.movieimage}>
+                        <span>
+                            <Image width="20rem"
+                                src={movieInfo.primaryImage ? movieInfo.primaryImage.url :
+                                    "https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg"}
+                                alt="" />
+                        </span>
+                    </Box>
                     <Box className={styles.info}>
 
-                        <Heading>
+                        <Heading >
                             {movieInfo.titleText.text}
                         </Heading>
                         <Text>
@@ -116,35 +127,53 @@ function Movie() {
                             textAlign="left">
                             {movieInfo.plot ? movieInfo.plot.plotText.plainText : "None found"}
                         </Text>
-
-                        <StatGroup
-                            alignSelf="flex-end"
+                        <Divider
                             marginTop="auto"
-                            whiteSpace="nowrap"
+                            marginBottom="-1rem"
+                            className={styles.bottomdivider}
+                        />
+                        <Box
+                            justifySelf="flex-end"
+                            display="flex"
+                            alignItems="center"
+                            width="100%"
+                            marginTop="2rem">
+                            <ButtonGroup
+                            >
+                                <Tooltip label="Go back">
+                                    <IconButton
+                                        aria-label='to main'
+                                        icon={<HomeIcon />}
+                                        onClick={toMain} />
+                                </Tooltip>
+                            </ButtonGroup>
+                            <StatGroup
+                                marginLeft="auto"
 
-                        >
-                            <Stat
-                                marginRight="1rem">
-                                <StatNumber>
-                                    {movieInfo.ratingsSummary.aggregateRating ?
-                                        movieInfo.ratingsSummary.aggregateRating
-                                        : "?"}
-                                </StatNumber>
-                                <StatHelpText>
-                                    {movieInfo.ratingsSummary.voteCount} Votes
-                                </StatHelpText>
-                            </Stat>
-                            <Stat>
-                                <StatNumber>
-                                    {movieInfo.releaseDate.day}-{movieInfo.releaseDate.month}-{movieInfo.releaseDate.year}
-                                </StatNumber>
-                                <StatHelpText>
-                                    Date released
-                                </StatHelpText>
-                            </Stat>
-                        </StatGroup>
+                                whiteSpace="nowrap">
+                                <Stat
+                                    marginRight="1rem">
+                                    <StatNumber>
+                                        {movieInfo.ratingsSummary.aggregateRating ?
+                                            movieInfo.ratingsSummary.aggregateRating
+                                            : "?"}
+                                    </StatNumber>
+                                    <StatHelpText>
+                                        {movieInfo.ratingsSummary.voteCount} Votes
+                                    </StatHelpText>
+                                </Stat>
+                                <Stat>
+                                    <StatNumber>
+                                        {movieInfo.releaseDate.day}-{movieInfo.releaseDate.month}-{movieInfo.releaseDate.year}
+                                    </StatNumber>
+                                    <StatHelpText>
+                                        Date released
+                                    </StatHelpText>
+                                </Stat>
+                            </StatGroup>
+                        </Box>
                     </Box>
-                </Box> : <Progress width="50rem" isIndeterminate />}
+                </Box> : <Progress width="80%" isIndeterminate />}
 
         </div>
     )

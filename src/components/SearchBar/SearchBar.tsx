@@ -6,7 +6,6 @@ import {
     ModalFooter,
     ModalBody,
     ModalCloseButton,
-    useDisclosure,
     Button,
     Input,
     InputGroup,
@@ -73,7 +72,6 @@ function SearchBar({ opened, closeHandler }: Props) {
 
     const handleSearchChange = (text: string) => {
         setSearchOptions({ ...searchOptions, keyword: text });
-        console.log(searchOptions)
     }
     const limitChange = (newLimit: string) => {
         setSearchOptions({ ...searchOptions, limit: newLimit });

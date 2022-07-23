@@ -16,7 +16,7 @@ function App() {
           <Route path="/main" element={<Main />} />
           <Route path="/movie/:id" element={<Movie />} />
           <Route path="/search/:keyword/:limit/" element={<Search />} />
-          <Route path="/search/:keyword/:limit/:year" element={<Search />} /> //react router has no optional params
+          <Route path="/search/:keyword/:limit/:year" element={<Search />} />
           <Route path="/search/:keyword/:limit/:genre/:year/" element={<Search />} />
 
         </Routes>
@@ -24,5 +24,5 @@ function App() {
     </div>
   );
 }
-
+//react router has no optional params
 export default App;

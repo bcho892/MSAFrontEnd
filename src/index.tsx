@@ -9,13 +9,10 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <HashRouter>
-      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-
-      <App />
-    </HashRouter>
-  </React.StrictMode>
+  <HashRouter>
+    <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+    <App />
+  </HashRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
