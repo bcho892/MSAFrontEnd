@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.5516143e.css",
-    "main.js": "/static/js/main.afb13f43.js",
-    "static/js/787.28cb0dcd.chunk.js": "/static/js/787.28cb0dcd.chunk.js",
-    "static/media/chakmoviesmain.png": "/static/media/chakmoviesmain.c0089b9bca3f0154abc4.png",
-    "static/media/chakmoviesdet.png": "/static/media/chakmoviesdet.15d17cb2a17ea1d00b8f.png",
-    "static/media/chakmoviessearch.png": "/static/media/chakmoviessearch.a9758af8cf382c5814cc.png",
-    "index.html": "/index.html",
-    "main.5516143e.css.map": "/static/css/main.5516143e.css.map",
-    "main.afb13f43.js.map": "/static/js/main.afb13f43.js.map",
-    "787.28cb0dcd.chunk.js.map": "/static/js/787.28cb0dcd.chunk.js.map"
+    "main.css": "/MSAFrontEnd/static/css/main.5516143e.css",
+    "main.js": "/MSAFrontEnd/static/js/main.9bf40382.js",
+    "static/js/787.28cb0dcd.chunk.js": "/MSAFrontEnd/static/js/787.28cb0dcd.chunk.js",
+    "static/media/chakmoviesmain.png": "/MSAFrontEnd/static/media/chakmoviesmain.c0089b9bca3f0154abc4.png",
+    "static/media/chakmoviesdet.png": "/MSAFrontEnd/static/media/chakmoviesdet.15d17cb2a17ea1d00b8f.png",
+    "static/media/chakmoviessearch.png": "/MSAFrontEnd/static/media/chakmoviessearch.a9758af8cf382c5814cc.png",
+    "index.html": "/MSAFrontEnd/index.html",
+    "main.5516143e.css.map": "/MSAFrontEnd/static/css/main.5516143e.css.map",
+    "main.9bf40382.js.map": "/MSAFrontEnd/static/js/main.9bf40382.js.map",
+    "787.28cb0dcd.chunk.js.map": "/MSAFrontEnd/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5516143e.css",
-    "static/js/main.afb13f43.js"
+    "static/js/main.9bf40382.js"
   ]
 }
