@@ -1,6 +1,6 @@
 # Welcome to my MSA Front End App - ChakMovies
 
-[Link to Website](bcho892.github.io/MSAFrontEnd/)
+[Link to Website](https://bcho892.github.io/MSAFrontEnd/)
 
 This is a web app that accesses the MoviesDatabase API and then uses it to both display currently popular movies, as well as allowing users to search for movies and access details about them. I have incorporated ChakraUI into this app, and that made it super easy for me to also implement a dark/light theme as an extra feature.
 
