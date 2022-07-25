@@ -1,5 +1,5 @@
 .container {
-
+    padding-top: 4rem;
     display: flex;
     height: 100vh;
     justify-content: center;

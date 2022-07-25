@@ -87,10 +87,11 @@ function Movie() {
                     borderRadius="lg"
                     borderWidth="1px"
                     overflow="hidden"
+                    textAlign="left"
                     className={styles.infoholder}>
                     <Box className={styles.movieimage}>
                         <span>
-                            <Image width="20rem"
+                            <Image width="20rem"   
                                 src={movieInfo.primaryImage ? movieInfo.primaryImage.url :
                                     "https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg"}
                                 alt="" />
@@ -100,7 +101,7 @@ function Movie() {
 
                         <Heading >
                             {movieInfo.titleText.text}
-                        </Heading>
+                        </Heading >
                         <Text>
                             {director}
                         </Text>
@@ -124,7 +125,9 @@ function Movie() {
                             Synopsis
                         </Heading>
                         <Text
-                            textAlign="left">
+                            textAlign="left"
+                            maxH="13rem"
+                            overflowY="auto">
                             {movieInfo.plot ? movieInfo.plot.plotText.plainText : "None found"}
                         </Text>
                         <Divider

@@ -106,7 +106,7 @@ const Main = () => {
                     backgroundColor={smallScreen ? "transparent" : featuredBg}
                 >
 
-                    {featuredMovie.titleText ?
+                    {featuredMovie.id ?
                         <>
                             <Heading
                                 size={smallScreen ? "2xl" : "3xl"}>
@@ -196,8 +196,6 @@ const Main = () => {
                     </Box>
                 </div>;
             }) : <Progress width="50rem" isIndeterminate />}
-
-
 
         </div >
     )

@@ -37,6 +37,7 @@ const openLink = (url: string) => {
 export default function Welcome() {
     const navigate = useNavigate();
     const toMain = React.useCallback(() => navigate('/main', { replace: true }), [navigate]);
+    const toSearchEx = React.useCallback(() => navigate('/search/Steve Jobs/25/Biography', { replace: true }), [navigate])
     const { colorMode } = useColorMode();
     return (
         <div>
@@ -101,9 +102,12 @@ export default function Welcome() {
                         I have attempted to create a site that resembles that of a streaming site (e.g Netflix).
                         Users are able to both search for as well as explore already popular shows.
                     </Text>
-                    <Image src={detailsEx} />
-                    <Image src={searchEx} />
+                    <Image src={detailsEx}
+                        onClick={toMain} />
+                    <Image src={searchEx}
+                        onClick={toSearchEx} />
                     <Image src={mainEx}
+                        onClick={toMain}
                         marginBottom="2rem" />
                 </div>
 

@@ -56,14 +56,12 @@ export default function NavBar({ }: NavBarProps) {
                         icon={<Search2Icon />}
                     />
                 </Tooltip>
-                <Tooltip label={colorMode === 'light' ? "Switch to Dark Mode" : "Switch to Light Mode"}>
-                    <IconButton
-                        onClick={toggleColorMode}
-                        className={styles.button}
-                        aria-label='black'
-                        icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-                    />
-                </Tooltip>
+                <IconButton
+                    onClick={toggleColorMode}
+                    className={styles.button}
+                    aria-label='black'
+                    icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                />
             </ButtonGroup>
         </Box>
     );

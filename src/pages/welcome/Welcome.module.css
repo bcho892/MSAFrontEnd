@@ -33,7 +33,12 @@
 
 .container img{
     border-radius: 10px;
-    
+    transition: transform 1s;
+    cursor: pointer;
+}
+
+.container img:hover{
+    transform: scale(0.99);
 }
 
 .msa{

@@ -13,7 +13,8 @@ import {
     Stack,
     Badge,
     IconButton,
-    Tooltip
+    Tooltip,
+    Progress
 } from '@chakra-ui/react'
 
 function Search() {
@@ -99,13 +100,17 @@ function Search() {
                     display="flex"
                     flexDirection="column"
                     overflowY="auto">
-                    {searchPage.map((item, index) => {
+                    {searchPage.length > 0 ? searchPage.map((item, index) => {
                         return <SearchResult key={item.id}
                             rating={item.ratingsSummary.aggregateRating ? item.ratingsSummary.aggregateRating : "?"}
                             title={item.titleText.text}
                             year={item.releaseYear ? item.releaseYear.year : ""}
                             id={item.id} />;
-                    })}
+                    }) :
+                        <Progress
+                            alignSelf="center"
+                            width="80%"
+                            isIndeterminate />}
                 </Box>
             </Box>
 
