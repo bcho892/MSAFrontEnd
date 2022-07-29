@@ -43,7 +43,10 @@ const Main = () => {
         fetch(`https://moviesdatabase.p.rapidapi.com/titles/${id}?info=base_info`, options)
             .then(response => response.json())
             .then(response => setFeaturedDesc(response.results.plot.plotText.plainText))
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error(err);
+                setFeaturedDesc("");
+            });
     }
 
     const setDefault = () => {
@@ -53,7 +56,10 @@ const Main = () => {
             .then(response => {
                 setDefaultMovies(response.results)
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error(err);
+                setDefaultMovies([]);
+            });
 
     }
 
@@ -66,7 +72,10 @@ const Main = () => {
                     temp.push(response.results);
                     if (i === categories.length - 1) setAdditionalFeatured(temp);
                 })
-                .catch(err => console.error(err));
+                .catch(err => {
+                    console.error(err);
+                    setAdditionalFeatured([]);
+                });
         }
     }
 
@@ -77,7 +86,11 @@ const Main = () => {
                 setFeaturedMovie(response.results[0])
                 setFeaturedText(response.results[0].id)
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error(err);
+                setFeaturedMovie([]);
+                setFeaturedDesc("Error");
+            });
         getGenreFeatured();
         setDefault();
     }, [])
