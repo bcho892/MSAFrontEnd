@@ -143,7 +143,7 @@ const Main = () => {
                                 </Button>
                             </Tooltip>
                         </> :
-                        <Progress width="80%" isIndeterminate />
+                        <Progress width="80%" isIndeterminate data-testid="loadingbar" />
                     }
                 </Box>
 
@@ -207,7 +207,7 @@ const Main = () => {
                         {currentRow}
                     </Box>
                 </div>;
-            }) : <Progress width="50rem" isIndeterminate />}
+            }) : <Progress width="50rem" isIndeterminate data-testid="loadingbar" />}
 
         </div >
     )

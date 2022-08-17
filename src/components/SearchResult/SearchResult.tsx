@@ -35,7 +35,8 @@ function SearchResult({ title, year, rating, id }: Props) {
                     justifyContent="center"
                     minWidth="4rem"
                     borderRadius="lg">
-                    <Heading>
+                    <Heading
+                        data-testid="rating">
                         {rating}
                     </Heading>
                 </Badge>
@@ -45,6 +46,7 @@ function SearchResult({ title, year, rating, id }: Props) {
                     {year}
                 </Text>
                 <Heading size="md"
+                    data-testid="title"
                 >
                     {title}
                 </Heading>
