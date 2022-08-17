@@ -137,7 +137,6 @@ const Main = () => {
                                 <Button
                                     size='lg'
                                     colorScheme={smallScreen ? 'white' : 'blue'}
-
                                     variant={smallScreen ? "outline" : "solid"}
                                     onClick={() => toFeatured(featuredMovie.id)}>
                                     More
@@ -179,10 +178,10 @@ const Main = () => {
             </Box>
 
             {additionalFeatured.length > 0 ? additionalFeatured.map((item, index) => {
-
                 let currentRow = item.map((genre, index1) => {
                     return genre.primaryImage && genre.primaryImage.url ?
-                        <MovieCard key={genre.id} title={genre.titleText.text}
+                        <MovieCard
+                            key={genre.id} title={genre.titleText.text}
                             imgurl={genre.primaryImage.url}
                             year={genre.releaseYear.year}
                             id={genre.id} />

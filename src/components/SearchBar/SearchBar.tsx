@@ -28,7 +28,7 @@ import {
 import { genres } from '../../contexts/genres'
 import { Search2Icon } from '@chakra-ui/icons'
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Router } from 'react-router-dom'
 
 type Props = {
     opened: boolean;
@@ -54,7 +54,6 @@ function SearchBar({ opened, closeHandler }: Props) {
 
     }
     const handleClose = () => {
-
         closeHandler();
         clearSearch();
     }
@@ -88,7 +87,6 @@ function SearchBar({ opened, closeHandler }: Props) {
 
     return (
         <>
-
             <Modal isOpen={opened} onClose={handleClose}>
                 <ModalOverlay />
                 <ModalContent>
@@ -97,6 +95,7 @@ function SearchBar({ opened, closeHandler }: Props) {
                     <ModalBody>
                         <InputGroup size='lg'>
                             <Input
+                                data-testid="searchfield"
                                 onChange={(e) => handleSearchChange(e.target.value)}
                                 placeholder='Search Movies'
                             />
@@ -106,6 +105,7 @@ function SearchBar({ opened, closeHandler }: Props) {
                         </InputGroup>
                         <Accordion
                             marginTop="1rem"
+
                             defaultIndex={[0]}
                             allowMultiple>
                             <AccordionItem>
@@ -135,13 +135,16 @@ function SearchBar({ opened, closeHandler }: Props) {
                                         <Text>Year</Text>
                                         <NumberInput min={1850} max={2030}
                                             variant="filled"
+
                                             onChange={(e) => yearChange(e)}
                                             marginBottom='1rem'>
-                                            <NumberInputField />
+                                            <NumberInputField
+                                                data-testid="yearinput" />
                                         </NumberInput>
                                         <Text># of Results</Text>
                                         <NumberInput defaultValue={25} min={1} max={50}
-                                            onChange={(e) => limitChange(e)}>
+                                            onChange={(e) => limitChange(e)}
+                                        >
                                             <NumberInputField
                                             />
                                             <NumberInputStepper>
@@ -156,10 +159,10 @@ function SearchBar({ opened, closeHandler }: Props) {
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme='blue' mr={3} onClick={() => makeSearch()} >
+                        <Button colorScheme='blue' data-testid='searchbtn' mr={3} onClick={() => makeSearch()} >
                             Search
                         </Button>
-                        <Button variant='ghost' onClick={() => handleClose()}>Close</Button>
+                        <Button data-testid='closebtn' variant='ghost' onClick={() => handleClose()}>Close</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

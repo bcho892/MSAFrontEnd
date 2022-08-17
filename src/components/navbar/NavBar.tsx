@@ -33,7 +33,8 @@ export default function NavBar({ }: NavBarProps) {
     const logoColor = useColorModeValue("gray.600", "white")
     return (
         <Box className={styles.container}
-            bg={navColor}>
+            bg={navColor}
+            data-testid='navbg'>
             <SearchBar closeHandler={onModalClosed} opened={isSearch} />
             <Heading
                 onClick={toWelcome}
@@ -60,6 +61,7 @@ export default function NavBar({ }: NavBarProps) {
                     onClick={toggleColorMode}
                     className={styles.button}
                     aria-label='black'
+                    data-testid='colormodebtn'
                     icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
                 />
             </ButtonGroup>
