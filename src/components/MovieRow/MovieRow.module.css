@@ -1,0 +1,16 @@
+.movierow {
+    padding: 1rem 0;
+    display: flex;
+    overflow-x: scroll;
+    gap: 1rem;
+    position: relative;
+    align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .movierow {
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+}

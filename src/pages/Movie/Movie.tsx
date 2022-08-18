@@ -21,34 +21,7 @@ import {
 } from '@chakra-ui/react'
 import HomeIcon from '../../components/HomeIcon/HomeIcon'
 import styles from './Movie.module.css'
-
-const formatTime = (seconds: number): string => {
-    const output: number[] = [];
-    let hours = Math.floor(seconds / 3600);
-    output.push(hours);
-    seconds -= hours * 3600;
-    let minutes = Math.floor(seconds / 60);
-    seconds -= minutes * 60;
-    output.push(minutes);
-    output.push(seconds);
-    let formatted: string = "";
-    for (let i = 0; i < output.length; ++i) {
-        if (output[i] > 0)
-            switch (i) {
-                case 0:
-                    formatted += `${output[i]} H `
-                    break;
-                case 1:
-                    formatted += `${output[i]} M `
-                    break;
-                case 2:
-                    formatted += `${output[i]} S `
-                    break;
-            };
-    }
-    return formatted;
-}
-
+import { formatTime } from '../../methods/Helper'
 
 function Movie() {
     let { id } = useParams()

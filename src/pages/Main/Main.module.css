@@ -53,6 +53,12 @@
         min-width: 100vw;
         filter: brightness(0.3);
     }
+}
 
-
+@media only screen and (max-width: 500px){
+    .movierow{
+        flex-direction:column;
+        overflow:hidden;
+    }
+    
 }

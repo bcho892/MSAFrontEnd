@@ -7,8 +7,6 @@ import {
     Button,
     useColorModeValue,
     Text,
-    Stack,
-    Badge,
     Image,
     Heading,
     Progress,
@@ -18,6 +16,7 @@ import {
 } from '@chakra-ui/react'
 import { options } from '../../contexts/APIKey'
 import { useNavigate } from "react-router-dom";
+import MovieRow from '../../components/MovieRow/MovieRow'
 
 type Category = {
     name: string,
@@ -25,8 +24,8 @@ type Category = {
 }
 
 const categories: Category[] = [{ name: "Upcoming", functionOption: "/x/upcoming?info=mini_info&limit=10&page=1&titleType=movie&year=2022" },
-{ name: "Action", functionOption: "?info=mini_info&limit=10&page=1&titleType=movie&genre=Action&year=2022" },
-{ name: "Comedy", functionOption: "?titleType=movie&info=mini_info&year=2022&genre=Crime&page=2&limit=10" }];
+{ name: "Action", functionOption: "?info=mini_info&limit=10&page=1&titleType=movie&genre=Action&year=2022" }
+];
 
 const Main = () => {
     const [defaultMovies, setDefaultMovies] = React.useState<any[]>([]);
@@ -102,7 +101,8 @@ const Main = () => {
     }
 
     return (
-        <div className={styles.container}
+        <Box
+            className={styles.container}
         >
             <NavBar />
             <div className={styles.featured}>
@@ -149,33 +149,19 @@ const Main = () => {
 
             </div>
 
-            <Stack direction="row"
-                marginBottom='2rem'>
-                <Badge
-                    colorScheme="blue"
-                    width="4rem"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"></Badge>
 
-                <Heading
-                >Currently Popular
-                </Heading>
-            </Stack>
+            <MovieRow children={defaultMovies.map((item, index) => {
+                return item.primaryImage && item.primaryImage.url ?
+                    <MovieCard key={item.id} title={item.titleText.text}
+                        imgurl={item.primaryImage.url}
+                        year={item.releaseYear.year}
+                        id={item.id} />
+                    : null;
+            })}
+                genre={"Currently Popular"}
+            />
 
-            <Box className={styles.movierow}
-                backgroundColor={featuredBg}
-            >
 
-                {defaultMovies.map((item, index) => {
-                    return item.primaryImage && item.primaryImage.url ?
-                        <MovieCard key={item.id} title={item.titleText.text}
-                            imgurl={item.primaryImage.url}
-                            year={item.releaseYear.year}
-                            id={item.id} />
-                        : null;
-                })}
-            </Box>
 
             {additionalFeatured.length > 0 ? additionalFeatured.map((item, index) => {
                 let currentRow = item.map((genre, index1) => {
@@ -189,27 +175,13 @@ const Main = () => {
                 })
 
                 return <div key={index}>
-                    <Stack direction="row"
-                        marginBottom='2rem'>
-                        <Badge
-                            colorScheme="blue"
-                            width="4rem"
-                            display="flex"
-                            alignItems="center"
-                            justifyContent="center"></Badge>
-
-                        <Heading
-                        >{categories[index].name}
-                        </Heading>
-                    </Stack>
-                    <Box className={styles.movierow}
-                        backgroundColor={featuredBg}>
-                        {currentRow}
-                    </Box>
+                    <MovieRow
+                        genre={categories[index].name}
+                        children={currentRow} />
                 </div>;
             }) : <Progress width="50rem" isIndeterminate data-testid="loadingbar" />}
 
-        </div >
+        </Box >
     )
 }
 

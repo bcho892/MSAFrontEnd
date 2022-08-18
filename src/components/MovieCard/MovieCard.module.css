@@ -1,9 +1,15 @@
-.container:hover .extrainfo{
-    opacity: 1;
-    
+.md{
+    display:flex;
+    width:100%;
+    justify-content:center;
 }
 
-.extrainfo{
+.container:hover .extrainfo {
+    opacity: 1;
+
+}
+
+.extrainfo {
     position: absolute;
     z-index: 900;
     opacity: 0;
@@ -11,15 +17,51 @@
     max-width: 12rem;
     user-select: none;
 }
-.overlay{
+
+.overlay {
     transition: all 1s;
 }
 
-.container{
+.container {
     cursor: pointer;
+    min-width: 13rem;
+    height: 20rem;
+}
+.container img{
+    height:20rem;
 }
 
-.container:hover .overlay{
+.container:hover .overlay {
     transform: scale(1.1);
     filter: brightness(0.7);
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        height: 9rem;
+        width: 90%;
+        background-color: white;
+        justify-content: flex-start;   
+    }
+
+    .container:hover .overlay {
+        transform: none;
+        filter: none;
+    }
+
+    .container img {
+        margin-right: auto;
+        height:auto;
+        width: 8rem;
+    }
+
+    .container h2 {
+        color: rgb(33,33,33);
+        font-size: 1rem;
+        opacity: 1;
+        text-align: left;
+        margin-left: 9rem;
+        width:20rem;
+    }
+
 }
