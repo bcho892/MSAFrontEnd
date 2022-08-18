@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './MovieCard.module.css'
-import { Box, Image, Heading, useMediaQuery } from '@chakra-ui/react'
+import { Box, Image, Heading, useMediaQuery, useColorModeValue } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 type Props = {
@@ -11,6 +11,8 @@ type Props = {
 }
 
 function MovieCard({ id, title, imgurl, year }: Props) {
+    const [smallScreen] = useMediaQuery('(max-width: 600px)');
+    const bgclr = useColorModeValue("white", "gray.700")
     const navigate = useNavigate();
     const toMovie = React.useCallback(() => navigate(`/movie/${id}`, { replace: false }), [navigate]);
     return (
@@ -24,26 +26,31 @@ function MovieCard({ id, title, imgurl, year }: Props) {
                 onClick={toMovie}
                 className={styles.container}
                 display='flex'
-                justifyContent='center'
                 alignItems='center'
                 objectFit='cover'
                 borderWidth='1px'
                 borderRadius='lg'
+                bg={bgclr}
                 overflow='hidden'
-                boxShadow="0 0 10px rgb(33,33,33)">
-
-                <Image
-                    className={styles.overlay}
-                    objectFit='cover'
-                    src={imgurl}
-                    alt='img' />
-                <Heading className={styles.extrainfo}
-                    fontSize="1.5rem"
-                    color='white' >
-                    {title} <br />
-                    ({year})
-                </Heading>
-
+                boxShadow="0 0 8px rgb(33,33,33)">
+                <Box>
+                    <Image
+                        className={styles.overlay}
+                        src={imgurl}
+                        alt='img' />
+                </Box>
+                <Box
+                    alignItems={smallScreen ? "center" : ""}
+                    display={smallScreen ? "flex" : "none"}
+                    height="100%"
+                >
+                    <Heading className={styles.extrainfo}
+                        fontSize="1.5rem"
+                    >
+                        {title} <br />
+                        ({year})
+                    </Heading>
+                </Box>
             </Box >
         </motion.div>
     )
