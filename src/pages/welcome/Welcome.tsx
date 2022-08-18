@@ -7,6 +7,7 @@ import { ExternalLinkIcon, ArrowForwardIcon } from '@chakra-ui/icons'
 import detailsEx from './chakmoviesdet.png'
 import searchEx from './chakmoviessearch.png'
 import mainEx from './chakmoviesmain.png'
+import { motion } from 'framer-motion'
 import {
     Button,
     ButtonGroup,
@@ -43,74 +44,78 @@ export default function Welcome() {
         <div>
             <NavBar />
             <div className={styles.container}>
-                <div className={styles.heading}>
-                    <Heading
+                <motion.div
+                    initial={{ y: -35, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    viewport={{ once: true }}>
+                    <div className={styles.heading}>
+                        <Heading
 
-                        size="4xl"
-                        maxWidth="800px">
+                            size="4xl"
+                            maxWidth="800px">
 
-                        <span className={styles.msa}>MSA</span> Assignment
+                            <span className={styles.msa}>MSA</span> Assignment
 
-                    </Heading>
-                    <Heading
-                        size="xl"
-                        color={colorMode === "light" ? "gray.700" : "white"}>
-                        Phase 2 Front End
-                    </Heading>
-                    <Text
-                        fontSize='xl'
-                        maxWidth='500px'
-                        padding="0 1rem"
-                    >ChakMovies is a Web App that allows users to search for details about Movies.
-                        Made by <Link color='blue.500' onClick={() => openLink("https://github.com/bcho892")}>bcho892</Link>.</Text>
-                    <ButtonGroup
-                    >
-                        <Button size='lg' rightIcon={<ArrowForwardIcon />} colorScheme='blue' onClick={toMain}>
-                            To App
-                        </Button>
-                        <Button size='lg'
-                            rightIcon={<ExternalLinkIcon />}
-                            onClick={() => openLink("https://github.com/bcho892/MSAFrontEnd")}
-                        >Github</Button>
-                    </ButtonGroup>
+                        </Heading>
+                        <Heading
+                            size="xl"
+                            color={colorMode === "light" ? "gray.700" : "white"}>
+                            Phase 2 Front End
+                        </Heading>
+                        <Text
+                            fontSize='xl'
+                            maxWidth='500px'
+                            padding="0 1rem"
+                        >ChakMovies is a Web App that allows users to search for details about Movies.
+                            Made by <Link color='blue.500' onClick={() => openLink("https://github.com/bcho892")}>bcho892</Link>.</Text>
+                        <ButtonGroup
+                        >
+                            <Button size='lg' rightIcon={<ArrowForwardIcon />} colorScheme='blue' onClick={toMain}>
+                                To App
+                            </Button>
+                            <Button size='lg'
+                                rightIcon={<ExternalLinkIcon />}
+                                onClick={() => openLink("https://github.com/bcho892/MSAFrontEnd")}
+                            >Github</Button>
+                        </ButtonGroup>
 
-                    <Heading
-                        marginTop="9rem"
-                    >How I met the Requirements
-                    </Heading>
-                    <Divider />
-                    <Box bg={colorMode === 'light' ? "gray.200" : "blackAlpha.300"} borderRadius="lg"
-                        padding="1rem">
-                        <div className={styles.skillholder}>
-                            {techUsed.map((value, index) => {
-                                return <TechnologyCard
-                                    key={index}
-                                    skill={value.name}
-                                    description={value.description}
-                                />
-                            })}
-                        </div>
+                        <Heading
+                            marginTop="9rem"
+                        >How I met the Requirements
+                        </Heading>
+                        <Divider />
+                        <Box bg={colorMode === 'light' ? "gray.200" : "blackAlpha.300"} borderRadius="lg"
+                            padding="1rem">
+                            <div className={styles.skillholder}>
+                                {techUsed.map((value, index) => {
+                                    return <TechnologyCard
+                                        key={index}
+                                        skill={value.name}
+                                        description={value.description}
+                                    />
+                                })}
+                            </div>
 
-                    </Box>
+                        </Box>
 
-                    <Heading>How my App works </Heading>
-                    <Divider />
-                    <Text fontSize="xl" maxWidth="800px"
-                        padding="0 1rem"
-                    >
-                        Using the <Link color='blue.500' onClick={() => openLink("https://rapidapi.com/SAdrian/api/moviesdatabase/")}>MoviesDatabase API</Link>,
-                        I have attempted to create a site that resembles that of a streaming site (e.g Netflix).
-                        Users are able to both search for as well as explore already popular shows.
-                    </Text>
-                    <Image src={detailsEx}
-                        onClick={toMain} />
-                    <Image src={searchEx}
-                        onClick={toSearchEx} />
-                    <Image src={mainEx}
-                        onClick={toMain}
-                        marginBottom="2rem" />
-                </div>
-
+                        <Heading>How my App works </Heading>
+                        <Divider />
+                        <Text fontSize="xl" maxWidth="800px"
+                            padding="0 1rem"
+                        >
+                            Using the <Link color='blue.500' onClick={() => openLink("https://rapidapi.com/SAdrian/api/moviesdatabase/")}>MoviesDatabase API</Link>,
+                            I have attempted to create a site that resembles that of a streaming site (e.g Netflix).
+                            Users are able to both search for as well as explore already popular shows.
+                        </Text>
+                        <Image src={detailsEx}
+                            onClick={toMain} />
+                        <Image src={searchEx}
+                            onClick={toSearchEx} />
+                        <Image src={mainEx}
+                            onClick={toMain}
+                            marginBottom="2rem" />
+                    </div>
+                </motion.div>
 
             </div>
         </div >

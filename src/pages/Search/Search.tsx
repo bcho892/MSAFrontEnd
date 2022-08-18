@@ -4,6 +4,7 @@ import styles from './Search.module.css'
 import SearchResult from '../../components/SearchResult/SearchResult'
 import { useParams, useNavigate } from 'react-router-dom'
 import { options } from '../../contexts/APIKey'
+import { motion } from 'framer-motion'
 import HomeIcon from '../../components/HomeIcon/HomeIcon'
 import {
     Box,
@@ -70,35 +71,42 @@ function Search() {
                 <Box padding="1.5rem"
                     display="flex"
                     alignItems="center">
-                    <Box display="flex"
-                        flexDir="column">
-                        <Heading>
-                            Results for: {keyword}
-                        </Heading>
-                        <Stack direction="row" margin="0.25rem 0">
-                            {year && genre && <Badge colorScheme="blue" variant="outline">YEAR: {year}</Badge>}
-                            {year && !/^\d+$/.test(year) && !genre &&
-                                <Badge colorScheme="blue" variant="outline">GENRE: {year}</Badge>}
-                            {year && /^\d+$/.test(year) && !genre &&
-                                <Badge colorScheme="blue" variant="outline">YEAR: {year}</Badge>}
-                            {genre && <Badge colorScheme="blue" variant="outline">GENRE: {genre}</Badge>}
-                        </Stack>
+                    <motion.div
+                        style={{ overflow: "hidden" }}
+                        initial={{ y: -35, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        viewport={{ once: true }}>
+                        <Box display="flex"
+                            flexDir="column">
+                            <Heading>
+                                Results for: {keyword}
+                            </Heading>
+                            <Stack direction="row" margin="0.25rem 0">
+                                {year && genre && <Badge colorScheme="blue" variant="outline">YEAR: {year}</Badge>}
+                                {year && !/^\d+$/.test(year) && !genre &&
+                                    <Badge colorScheme="blue" variant="outline">GENRE: {year}</Badge>}
+                                {year && /^\d+$/.test(year) && !genre &&
+                                    <Badge colorScheme="blue" variant="outline">YEAR: {year}</Badge>}
+                                {genre && <Badge colorScheme="blue" variant="outline">GENRE: {genre}</Badge>}
+                            </Stack>
 
-                        <Text>
-                            Max {limit} Results ({searchPage.length} found)
-                        </Text>
-                    </Box>
-                    <Tooltip label="Go back">
-                        <IconButton
-                            aria-label='go main'
-                            icon={<HomeIcon />}
-                            onClick={toMain}
-                            marginLeft="auto" />
-                    </Tooltip>
+                            <Text>
+                                Max {limit} Results ({searchPage.length} found)
+                            </Text>
+                        </Box>
+                        <Tooltip label="Go back">
+                            <IconButton
+                                aria-label='go main'
+                                icon={<HomeIcon />}
+                                onClick={toMain}
+                                marginLeft="auto" />
+                        </Tooltip>
+                    </motion.div>
                 </Box>
                 <Box
                     display="flex"
                     flexDirection="column"
+                    overflowX="hidden"
                     overflowY="auto">
                     {searchPage.length > 0 ? searchPage.map((item, index) => {
                         return <SearchResult key={item.id}
@@ -115,7 +123,7 @@ function Search() {
             </Box>
 
 
-        </Box>
+        </Box >
     )
 }
 

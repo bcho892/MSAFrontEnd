@@ -23,8 +23,8 @@ type Category = {
     functionOption: string
 }
 
-const categories: Category[] = [{ name: "Upcoming", functionOption: "/x/upcoming?info=mini_info&limit=10&page=1&titleType=movie&year=2022" },
-{ name: "Action", functionOption: "?info=mini_info&limit=10&page=1&titleType=movie&genre=Action&year=2022" }
+const categories: Category[] = [{ name: "Upcoming", functionOption: "/x/upcoming?info=mini_info&limit=6&page=1&titleType=movie&year=2022" },
+{ name: "Action", functionOption: "?info=mini_info&limit=6&page=1&titleType=movie&genre=Action&year=2022" }
 ];
 
 const Main = () => {
@@ -50,7 +50,7 @@ const Main = () => {
 
     const setDefault = () => {
 
-        fetch('https://moviesdatabase.p.rapidapi.com/titles?info=mini_info&limit=10&page=1&titleType=movie&list=most_pop_movies', options)
+        fetch('https://moviesdatabase.p.rapidapi.com/titles?info=mini_info&limit=6&page=1&titleType=movie&list=most_pop_movies', options)
             .then(response => response.json())
             .then(response => {
                 setDefaultMovies(response.results)

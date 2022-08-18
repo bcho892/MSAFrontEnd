@@ -19,6 +19,7 @@ import {
     ButtonGroup,
     Tooltip,
 } from '@chakra-ui/react'
+import { motion } from 'framer-motion'
 import HomeIcon from '../../components/HomeIcon/HomeIcon'
 import styles from './Movie.module.css'
 import { formatTime } from '../../methods/Helper'
@@ -55,101 +56,108 @@ function Movie() {
 
         <div className={styles.container}>
             <NavBar />
+
             {movieInfo.id ?
-                <Box display="flex"
-                    borderRadius="lg"
-                    borderWidth="1px"
-                    overflow="hidden"
-                    textAlign="left"
-                    className={styles.infoholder}>
-                    <Box className={styles.movieimage}>
-                        <span>
-                            <Image width="20rem"   
-                                src={movieInfo.primaryImage ? movieInfo.primaryImage.url :
-                                    "https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg"}
-                                alt="" />
-                        </span>
-                    </Box>
-                    <Box className={styles.info}>
+                <motion.div
+                    initial={{ y: -35, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    viewport={{ once: true }}>
+                    <Box display="flex"
+                        borderRadius="lg"
+                        borderWidth="1px"
+                        overflow="hidden"
+                        textAlign="left"
+                        className={styles.infoholder}>
+                        <Box className={styles.movieimage}>
+                            <span>
+                                <Image width="20rem"
+                                    src={movieInfo.primaryImage ? movieInfo.primaryImage.url :
+                                        "https://icon-library.com/images/no-picture-available-icon/no-picture-available-icon-1.jpg"}
+                                    alt="" />
+                            </span>
+                        </Box>
+                        <Box className={styles.info}>
 
-                        <Heading >
-                            {movieInfo.titleText.text}
-                        </Heading >
-                        <Text>
-                            {director}
-                        </Text>
-                        <Stack direction="row" marginTop="0.5rem">
-                            {movieInfo.genres.genres.map((item: any, index: number) => {
-                                return <Badge key={item.text}
-                                    variant="outline">
-                                    {item.text}
+                            <Heading >
+                                {movieInfo.titleText.text}
+                            </Heading >
+                            <Text>
+                                {director}
+                            </Text>
+                            <Stack direction="row" marginTop="0.5rem">
+                                {movieInfo.genres.genres.map((item: any, index: number) => {
+                                    return <Badge key={item.text}
+                                        variant="outline">
+                                        {item.text}
+                                    </Badge>
+                                })}
+                                <Badge colorScheme="blue">
+                                    {movieInfo.releaseYear.year}
                                 </Badge>
-                            })}
-                            <Badge colorScheme="blue">
-                                {movieInfo.releaseYear.year}
-                            </Badge>
-                            {movieInfo.runtime && <Badge colorScheme="blue" variant="outline">
-                                {formatTime(movieInfo.runtime.seconds)}
-                            </Badge>}
-                        </Stack>
-                        <Divider margin="1rem 0" />
-                        <Heading fontSize="2xl"
-                            marginBottom="0.5rem">
-                            Synopsis
-                        </Heading>
-                        <Text
-                            textAlign="left"
-                            maxH="13rem"
-                            overflowY="auto">
-                            {movieInfo.plot ? movieInfo.plot.plotText.plainText : "None found"}
-                        </Text>
-                        <Divider
-                            marginTop="auto"
-                            marginBottom="-1rem"
-                            className={styles.bottomdivider}
-                        />
-                        <Box
-                            justifySelf="flex-end"
-                            display="flex"
-                            alignItems="center"
-                            width="100%"
-                            marginTop="2rem">
-                            <ButtonGroup
-                            >
-                                <Tooltip label="Go back">
-                                    <IconButton
-                                        aria-label='to main'
-                                        icon={<HomeIcon />}
-                                        onClick={toMain} />
-                                </Tooltip>
-                            </ButtonGroup>
-                            <StatGroup
-                                marginLeft="auto"
+                                {movieInfo.runtime && <Badge colorScheme="blue" variant="outline">
+                                    {formatTime(movieInfo.runtime.seconds)}
+                                </Badge>}
+                            </Stack>
+                            <Divider margin="1rem 0" />
+                            <Heading fontSize="2xl"
+                                marginBottom="0.5rem">
+                                Synopsis
+                            </Heading>
+                            <Text
+                                textAlign="left"
+                                maxH="13rem"
+                                overflowY="auto">
+                                {movieInfo.plot ? movieInfo.plot.plotText.plainText : "None found"}
+                            </Text>
+                            <Divider
+                                marginTop="auto"
+                                marginBottom="-1rem"
+                                className={styles.bottomdivider}
+                            />
+                            <Box
+                                justifySelf="flex-end"
+                                display="flex"
+                                alignItems="center"
+                                width="100%"
+                                marginTop="2rem">
+                                <ButtonGroup
+                                >
+                                    <Tooltip label="Go back">
+                                        <IconButton
+                                            aria-label='to main'
+                                            icon={<HomeIcon />}
+                                            onClick={toMain} />
+                                    </Tooltip>
+                                </ButtonGroup>
+                                <StatGroup
+                                    marginLeft="auto"
 
-                                whiteSpace="nowrap">
-                                <Stat
-                                    marginRight="1rem">
-                                    <StatNumber>
-                                        {movieInfo.ratingsSummary.aggregateRating ?
-                                            movieInfo.ratingsSummary.aggregateRating
-                                            : "?"}
-                                    </StatNumber>
-                                    <StatHelpText>
-                                        {movieInfo.ratingsSummary.voteCount} Votes
-                                    </StatHelpText>
-                                </Stat>
-                                <Stat>
-                                    <StatNumber>
-                                        {movieInfo.releaseDate.day}-{movieInfo.releaseDate.month}-{movieInfo.releaseDate.year}
-                                    </StatNumber>
-                                    <StatHelpText>
-                                        Date released
-                                    </StatHelpText>
-                                </Stat>
-                            </StatGroup>
+                                    whiteSpace="nowrap">
+                                    <Stat
+                                        marginRight="1rem">
+                                        <StatNumber>
+                                            {movieInfo.ratingsSummary.aggregateRating ?
+                                                movieInfo.ratingsSummary.aggregateRating
+                                                : "?"}
+                                        </StatNumber>
+                                        <StatHelpText>
+                                            {movieInfo.ratingsSummary.voteCount} Votes
+                                        </StatHelpText>
+                                    </Stat>
+                                    <Stat>
+                                        <StatNumber>
+                                            {movieInfo.releaseDate.day}-{movieInfo.releaseDate.month}-{movieInfo.releaseDate.year}
+                                        </StatNumber>
+                                        <StatHelpText>
+                                            Date released
+                                        </StatHelpText>
+                                    </Stat>
+                                </StatGroup>
+                            </Box>
                         </Box>
                     </Box>
-                </Box> : <Progress width="80%" isIndeterminate />}
+                </motion.div>
+                : <Progress width="80%" isIndeterminate />}
 
         </div>
     )

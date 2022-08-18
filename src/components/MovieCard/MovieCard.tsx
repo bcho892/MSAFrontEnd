@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './MovieCard.module.css'
 import { Box, Image, Heading, useMediaQuery } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
-import { motion, useScroll } from 'framer-motion'
+import { motion } from 'framer-motion'
 type Props = {
     title: string,
     imgurl: string;
@@ -16,8 +16,8 @@ function MovieCard({ id, title, imgurl, year }: Props) {
     return (
         <motion.div
             className={styles.md}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ x: -35, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
             viewport={{ once: true }}
         >
             <Box
@@ -29,7 +29,8 @@ function MovieCard({ id, title, imgurl, year }: Props) {
                 objectFit='cover'
                 borderWidth='1px'
                 borderRadius='lg'
-                overflow='hidden'>
+                overflow='hidden'
+                boxShadow="0 0 10px rgb(33,33,33)">
 
                 <Image
                     className={styles.overlay}

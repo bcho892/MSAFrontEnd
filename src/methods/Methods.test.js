@@ -12,5 +12,5 @@ test("Converts 1 second", () => {
 });
 
 test("Converts one minute", () => {
-    expect(formatTime(60)).toBe("1 M ")
-})
+    expect(formatTime(60)).toBe("1 M ");
+});
