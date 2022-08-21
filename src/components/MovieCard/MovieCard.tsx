@@ -28,11 +28,10 @@ function MovieCard({ id, title, imgurl, year }: Props) {
                 display='flex'
                 alignItems='center'
                 objectFit='cover'
-                borderWidth='1px'
                 borderRadius='lg'
                 bg={bgclr}
                 overflow='hidden'
-                boxShadow="0 0 8px rgb(33,33,33)">
+            >
                 <Box>
                     <Image
                         className={styles.overlay}

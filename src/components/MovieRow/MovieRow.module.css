@@ -5,6 +5,21 @@
     gap: 1rem;
     position: relative;
     align-items: center;
+    overflow-y:visible;
+}
+
+.movieheading{
+    position: relative;
+}
+
+.movieheading::after{
+    height:3px;
+    width: 80%;
+    background:rgb(33,33,33);
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left:0;
 }
 
 @media only screen and (max-width: 600px) {

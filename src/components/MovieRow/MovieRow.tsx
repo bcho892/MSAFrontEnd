@@ -9,16 +9,53 @@ type Props = {
 
 export default function MovieRow({ genre, children }: Props) {
     const bgclr = useColorModeValue("gray.100", "gray.700");
-
+    const lineclr = useColorModeValue("#63B3ED", "gray.700");
     return (
-        <Box padding="0 2rem">
+        <Box padding="1rem 2rem"
+            position="relative"
+            _after={{
+                content: "''",
+                height: '80%',
+                width: '80%',
+                bgGradient: 'linear(to-r, #BEE3F8, #2C5282)',
+                position: 'absolute',
+                right: 0,
+                bottom: 0,
+                zIndex: -1,
+                borderRadius: "md",
+            }}
+            _before={{
+                content: "''",
+                height: '80%',
+                width: '70%',
+                bgGradient: 'linear(to-l, white, #EBF8FF)',
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                zIndex: -1,
+                borderRadius: "md",
+
+            }}
+            margin="2rem 0"
+        >
             <Stack direction="row"
                 margin="2rem 0">
                 <motion.div
                     initial={{ y: -35, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     viewport={{ once: true }}>
+
                     <Heading
+                        position="relative"
+                        _after={{
+                            height: "3px",
+                            width: "80%",
+                            background: lineclr,
+                            content: "''",
+                            position: "absolute",
+                            bottom: "-8px",
+                            left: 0,
+                        }}
                         fontWeight="500"
                     >{genre}
                     </Heading>
@@ -26,7 +63,8 @@ export default function MovieRow({ genre, children }: Props) {
             </Stack>
             <Box
             >
-                <Box className={styles.movierow}>{children}</Box>
+                <Box className={styles.movierow}
+                >{children}</Box>
             </Box>
         </Box >
     )

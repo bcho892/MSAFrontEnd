@@ -23,8 +23,8 @@ type Category = {
     functionOption: string
 }
 
-const categories: Category[] = [{ name: "Upcoming", functionOption: "/x/upcoming?info=mini_info&limit=6&page=1&titleType=movie&year=2022" },
-{ name: "Action", functionOption: "?info=mini_info&limit=6&page=1&titleType=movie&genre=Action&year=2022" }
+const categories: Category[] = [{ name: "Upcoming", functionOption: "/x/upcoming?info=mini_info&limit=12&page=1&titleType=movie&year=2022" },
+{ name: "Action", functionOption: "?info=mini_info&limit=12&page=1&titleType=movie&genre=Action&year=2022" }
 ];
 
 const Main = () => {
@@ -50,7 +50,7 @@ const Main = () => {
 
     const setDefault = () => {
 
-        fetch('https://moviesdatabase.p.rapidapi.com/titles?info=mini_info&limit=6&page=1&titleType=movie&list=most_pop_movies', options)
+        fetch('https://moviesdatabase.p.rapidapi.com/titles?info=mini_info&limit=12&page=1&titleType=movie&list=most_pop_movies', options)
             .then(response => response.json())
             .then(response => {
                 setDefaultMovies(response.results)
@@ -102,6 +102,7 @@ const Main = () => {
 
     return (
         <Box
+            bg="blackAlpha.100"
             className={styles.container}
         >
             <NavBar />
@@ -112,13 +113,12 @@ const Main = () => {
                         alt=''
                         maxWidth='50vw'
                         minWidth='20rem'
-                        opacity='0.9'
+   
                         objectFit='cover' />
                 }
                 <Box className={styles.featuredtext}
                     backgroundColor={smallScreen ? "transparent" : featuredBg}
                 >
-
                     {featuredMovie.id ?
                         <>
                             <Heading
@@ -137,6 +137,8 @@ const Main = () => {
                                 <Button
                                     size='lg'
                                     colorScheme={smallScreen ? 'white' : 'blue'}
+                                    bg={smallScreen ? 'none' : '#63B3ED'}
+                                    _hover={{ bg: smallScreen ? 'none' : '#BEE3F8' }}
                                     variant={smallScreen ? "outline" : "solid"}
                                     onClick={() => toFeatured(featuredMovie.id)}>
                                     More

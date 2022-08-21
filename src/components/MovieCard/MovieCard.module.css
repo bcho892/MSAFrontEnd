@@ -21,14 +21,12 @@
     justify-self: center;
 }
 
-.overlay {
-    transition: all 1s;
-}
 
 .container {
     cursor: pointer;
     min-width: 13rem;
     height: 20rem;
+    transition: transform 0.2s;
 }
 
 .container img {
@@ -36,9 +34,9 @@
     width:auto;
 }
 
-.container:hover .overlay {
-    transform: scale(1.1);
-    filter: brightness(0.7);
+.container:hover  {
+    transform: translateY(-10px);
+   
 }
 
 @media only screen and (max-width: 600px) {
@@ -49,9 +47,8 @@
         justify-content: flex-start;
     }
 
-    .container:hover .overlay {
+    .container:hover {
         transform: none;
-        filter: none;
     }
 
     .container img {
