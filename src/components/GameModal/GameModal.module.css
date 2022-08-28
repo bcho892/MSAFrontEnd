@@ -1,0 +1,27 @@
+@keyframes winner {
+    0% {
+        transform: scale(1.0);
+        box-shadow: none;
+    }
+
+    50% {
+        transform: scale(1.1);
+        box-shadow: 5px 5px 20px rgb(33, 33, 33);
+    }
+
+    100% {
+        transform: scale(1.0);
+        box-shadow: none;
+    }
+}
+
+.mostprob {
+    padding: 0 4px;
+    border-radius: 5px;
+    animation: winner 2s ease-out;
+    animation-iteration-count: infinite;
+}
+
+.mostprob p {
+    color: #4299E1;
+}

@@ -24,3 +24,9 @@ export const formatTime = (seconds: number): string => {
     }
     return formatted;
 }
+
+export const extractProbability = (item: Record<string, string>): { name: string, probability: string } => {
+    let category = Object.keys(item)[0];
+    return { name: category, probability: Number(item[category]).toPrecision(4) };
+
+}

@@ -5,7 +5,7 @@ import SearchResult from '../../components/SearchResult/SearchResult'
 import { useParams, useNavigate } from 'react-router-dom'
 import { options } from '../../contexts/APIKey'
 import { motion } from 'framer-motion'
-import HomeIcon from '../../components/HomeIcon/HomeIcon'
+import HomeIcon from '../../Icons/HomeIcon/HomeIcon'
 import {
     Box,
     Heading,

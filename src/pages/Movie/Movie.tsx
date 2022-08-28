@@ -20,7 +20,7 @@ import {
     Tooltip,
 } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
-import HomeIcon from '../../components/HomeIcon/HomeIcon'
+import HomeIcon from '../../Icons/HomeIcon/HomeIcon'
 import styles from './Movie.module.css'
 import { formatTime } from '../../methods/Helper'
 
@@ -124,6 +124,7 @@ function Movie() {
                                 >
                                     <Tooltip label="Go back">
                                         <IconButton
+                                            data-testid='homeButton'
                                             aria-label='to main'
                                             icon={<HomeIcon />}
                                             onClick={toMain} />

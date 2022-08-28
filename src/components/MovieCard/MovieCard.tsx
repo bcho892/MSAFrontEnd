@@ -28,7 +28,7 @@ function MovieCard({ id, title, imgurl, year }: Props) {
                 display='flex'
                 alignItems='center'
                 objectFit='cover'
-                borderRadius='lg'
+                borderRadius='sm'
                 bg={bgclr}
                 overflow='hidden'
             >

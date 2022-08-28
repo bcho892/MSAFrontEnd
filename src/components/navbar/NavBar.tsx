@@ -9,21 +9,31 @@ import {
     ButtonGroup,
     Tooltip
 } from '@chakra-ui/react'
-import { Search2Icon, MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { Search2Icon, MoonIcon, SunIcon, CheckIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom'
 import SearchBar from '../SearchBar/SearchBar';
-
-export interface NavBarProps {
+import GameModal from '../GameModal/GameModal';
+type modalManagement = {
+    search: boolean;
+    game: boolean;
 }
 
-export default function NavBar({ }: NavBarProps) {
-    const [isSearch, setIsSearch] = React.useState<boolean>(false);
+export default function NavBar() {
+    const [modalStates, setModalStates] = React.useState<modalManagement>({ search: false, game: false });
 
     const handleSearch = () => {
-        setIsSearch(true);
+        setModalStates({ ...modalStates, search: true });
     }
-    const onModalClosed = () => {
-        setIsSearch(false);
+    const onSearchClosed = () => {
+        setModalStates({ ...modalStates, search: false });
+    }
+
+    const handleGame = () => {
+        setModalStates({ ...modalStates, game: true });
+    }
+
+    const onGameClosed = () => {
+        setModalStates({ ...modalStates, game: false })
     }
 
     const navigate = useNavigate();
@@ -35,7 +45,8 @@ export default function NavBar({ }: NavBarProps) {
         <Box className={styles.container}
             bg={navColor}
             data-testid='navbg'>
-            <SearchBar closeHandler={onModalClosed} opened={isSearch} />
+            <GameModal closeHandler={onGameClosed} opened={modalStates.game} />
+            <SearchBar closeHandler={onSearchClosed} opened={modalStates.search} />
             <Heading
                 onClick={toWelcome}
                 cursor='pointer'
@@ -55,6 +66,13 @@ export default function NavBar({ }: NavBarProps) {
                         justifySelf='flex-end'
                         aria-label='black'
                         icon={<Search2Icon />}
+                    />
+                </Tooltip>
+                <Tooltip label="Play a game">
+                    <IconButton
+                        onClick={() => handleGame()}
+                        aria-label='game'
+                        icon={<CheckIcon />}
                     />
                 </Tooltip>
                 <IconButton

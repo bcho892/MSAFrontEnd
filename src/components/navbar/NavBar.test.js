@@ -9,3 +9,4 @@ test("default color mode", () => {
         </Router>)
     expect(window.getComputedStyle(screen.getByTestId('navbg')).background).toBe('white');
 })
+

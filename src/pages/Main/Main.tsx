@@ -27,6 +27,11 @@ const categories: Category[] = [{ name: "Upcoming", functionOption: "/x/upcoming
 { name: "Action", functionOption: "?info=mini_info&limit=12&page=1&titleType=movie&genre=Action&year=2022" }
 ];
 
+
+const stateChange = (data:any) => {
+    
+}
+
 const Main = () => {
     const [defaultMovies, setDefaultMovies] = React.useState<any[]>([]);
     const [featuredMovie, setFeaturedMovie] = React.useState<any>([]);

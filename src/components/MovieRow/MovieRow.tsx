@@ -8,7 +8,7 @@ type Props = {
 }
 
 export default function MovieRow({ genre, children }: Props) {
-    const bgclr = useColorModeValue("gray.100", "gray.700");
+    const bgclr = useColorModeValue("white", "gray.700");
     const lineclr = useColorModeValue("#63B3ED", "gray.700");
     return (
         <Box padding="1rem 2rem"
@@ -22,7 +22,7 @@ export default function MovieRow({ genre, children }: Props) {
                 right: 0,
                 bottom: 0,
                 zIndex: -1,
-                borderRadius: "md",
+                borderRadius: "sm",
             }}
             _before={{
                 content: "''",
@@ -33,7 +33,7 @@ export default function MovieRow({ genre, children }: Props) {
                 left: 0,
                 top: 0,
                 zIndex: -1,
-                borderRadius: "md",
+                borderRadius: "sm",
 
             }}
             margin="2rem 0"
