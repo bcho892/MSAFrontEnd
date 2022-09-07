@@ -52,11 +52,10 @@ export default function GameModal({ opened, closeHandler }: Props) {
                             Lets Play a Game!
                         </Heading>
                         <Text >
-                            Paste a url to an image here, and see what the AI thinks its most likely to be!
+                            Paste a url to an image here, and see if the model thinks its an airplane or not!
                         </Text>
                         <Text fontSize="sm" fontStyle="italic">
-                            Note: This model is only effective at predicting models that belong in the categories that the CIFAR-10 dataset includes.
-                            You can view these <Link color="blue.400" href="https://www.cs.toronto.edu/~kriz/cifar.html" target="_blank" rel="noopener noreferrer">here.</Link>
+                            Note: This model is trained using the data from the CIFAR-10 dataset. You can find out more <Link color="blue.400" href="https://www.cs.toronto.edu/~kriz/cifar.html" target="_blank" rel="noopener noreferrer">here.</Link>
                         </Text>
                         <Box display="flex" flexDir="column" gap="0.6rem">
                             <Input placeholder="Image URL" maxLength={200} onChange={(e) => setUrl({ ...url, searchUrl: e.target.value })} required />
@@ -71,7 +70,7 @@ export default function GameModal({ opened, closeHandler }: Props) {
                                     </Box>
                                     <Image src={url.successfulUrl} alt="your prediction image" borderRadius="md" />
                                     <Heading size="md">The distribution is:</Heading>
-                                    <Grid templateColumns='repeat(3, 1fr)' gap={5}>
+                                    <Grid templateColumns='repeat(2, 1fr)' gap={5}>
                                         {results.probabilities.map((item: any, index: number) => {
                                             let category = extractProbability(item);
                                             return <GridItem key={category.name} className={results.classname === category.name ? `${styles.mostprob}` : ""}>
