@@ -36,15 +36,15 @@ const Main = () => {
     const navigate = useNavigate();
     const toFeatured = (id: number) => { navigate(`/movie/${id}`); }; // solution adapted from https://stackoverflow.com/questions/68911432/
     const [smallScreen] = useMediaQuery('(max-width: 850px)');
-    const featuredBg = useColorModeValue('#EDF2F7', 'RGBA(0, 0, 0, 0.64)');
+    const featuredBg = useColorModeValue('var(--grey)', 'RGBA(0, 0, 0, 0.64)');
 
     const setFeaturedText = (id: string) => {
         fetch(`https://moviesdatabase.p.rapidapi.com/titles/${id}?info=base_info`, options)
             .then(response => response.json())
             .then(response => setFeaturedDesc(response.results.plot.plotText.plainText))
             .catch(err => {
-                console.error(err);
                 setFeaturedDesc("");
+                console.error(err);
             });
     }
 
@@ -56,8 +56,8 @@ const Main = () => {
                 setDefaultMovies(response.results)
             })
             .catch(err => {
-                console.error(err);
                 setDefaultMovies([]);
+                console.error(err);
             });
 
     }
@@ -72,8 +72,8 @@ const Main = () => {
                     if (i === categories.length - 1) setAdditionalFeatured(temp);
                 })
                 .catch(err => {
-                    console.error(err);
                     setAdditionalFeatured([]);
+                    console.error(err);
                 });
         }
     }
@@ -86,8 +86,8 @@ const Main = () => {
                 setFeaturedText(response.results[0].id)
             })
             .catch(err => {
-                console.error(err);
                 setFeaturedMovie([]);
+                console.error(err);
                 setFeaturedDesc("Error");
             });
         getGenreFeatured();
@@ -104,6 +104,7 @@ const Main = () => {
         <>
             <NavBar />
             {additionalFeatured.length > 0 ? <Box
+                bg={featuredBg}
                 className={styles.container}
             >
                 <div className={styles.featured}>

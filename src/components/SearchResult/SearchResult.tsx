@@ -29,7 +29,7 @@ function SearchResult({ title, year, rating, id }: Props) {
             <Box
                 _hover={{ backgroundColor: '#2B6CB0', color: 'white', cursor: 'pointer' }}
                 bg={bgColor}
-                borderRadius="lg"
+                borderRadius="1px"
                 padding='1rem 2rem'
                 margin='0.5rem 1rem'
                 display='flex'
@@ -41,7 +41,7 @@ function SearchResult({ title, year, rating, id }: Props) {
                         display="flex"
                         justifyContent="center"
                         minWidth="4rem"
-                        borderRadius="lg">
+                        borderRadius="1px">
                         <Heading
                             data-testid="rating">
                             {rating}

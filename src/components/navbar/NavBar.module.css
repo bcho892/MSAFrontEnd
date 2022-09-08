@@ -7,11 +7,13 @@
     display: flex;
     align-items: center;
     padding: 0 2rem;
+    padding-right: 1rem;
     z-index: 998;
 }
 
 .logo{
     height: 2rem;
+    cursor: pointer;
 }
 
 ul{

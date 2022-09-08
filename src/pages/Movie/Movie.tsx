@@ -56,14 +56,16 @@ function Movie() {
 
         <div className={styles.container}>
             <NavBar />
-
+            <Box className={styles.poly1}></Box>
+            <Box className={styles.poly2}></Box>
             {movieInfo.id ?
                 <motion.div
                     initial={{ y: -35, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     viewport={{ once: true }}>
                     <Box display="flex"
-                        borderRadius="lg"
+                        bg="white"
+                        borderRadius="1px"
                         borderWidth="1px"
                         overflow="hidden"
                         textAlign="left"
@@ -124,6 +126,7 @@ function Movie() {
                                 >
                                     <Tooltip label="Go back">
                                         <IconButton
+                                            variant="darkblue"
                                             data-testid='homeButton'
                                             aria-label='to main'
                                             icon={<HomeIcon />}

@@ -32,6 +32,13 @@ const techUsed: Tech[] = [{ name: "chakraUI", description: "I used ChakraUI as m
 { name: "TS React", description: "This app was created using React.js, while also taking advantage of TS's static typing" },
 { name: "User Input", description: "Users are able to interact with the Web App by making use of the search feature (top right)" },]
 
+const advancedFeatures: Tech[] = [{ name: "Mobile First Development", description: "Using media breakpoints and having and awareness of how smaller screens interact with content, I have made sure my app is fully responsive to this." },
+{ name: "UI Scaliability", description: "Similarly to mobile first development, different screen sizes warrant different experiences, and I have accounted for such also using media queries and conditionals" },
+{ name: "Fluid Transition", description: "Throughout the site, I have implemented a bunch of transitions/animations which make use of both Framer Motion as well as pure CSS" },
+{ name: "(Own) API connection", description: "I have included a Flask REST API from my Data Science project as a small mini-feature, which is cloud hosted on GCP" },
+{ name: "Unit Testing", description: "Using the Jest Testing Library, I have included unit tests to make sure my componenents and logic are working as intended without worrying about implementation details, resulting in more robust development" },
+{ name: "Complex FE Logic", description: "This app includes aspects which I would consider to be 'complex' such as: routing, params as props, props being passed down multiple components" }]
+
 const openLink = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer');
 }
@@ -84,11 +91,11 @@ export default function Welcome() {
 
                         <Heading
                             marginTop="9rem"
-                        >How I met the Requirements
+                        >How I met the Requirements (Basic)
                         </Heading>
                         <Divider />
-                        <Box bg={colorMode === 'light' ? "gray.200" : "blackAlpha.300"} borderRadius="lg"
-                            padding="1rem">
+                        <Box padding="1rem"
+                            maxW="1100px">
                             <div className={styles.skillholder}>
                                 {techUsed.map((value, index) => {
                                     return <TechnologyCard
@@ -98,9 +105,21 @@ export default function Welcome() {
                                     />
                                 })}
                             </div>
-
                         </Box>
-
+                        <Heading>What about advanced?</Heading>
+                        <Divider />
+                        <Box padding="1rem"
+                            maxW="1100px">
+                            <div className={styles.skillholder}>
+                                {advancedFeatures.map((value, index) => {
+                                    return <TechnologyCard
+                                        key={index}
+                                        skill={value.name}
+                                        description={value.description}
+                                    />
+                                })}
+                            </div>
+                        </Box>
                         <Heading>How my App works </Heading>
                         <Divider />
                         <Text fontSize="xl" maxWidth="800px"

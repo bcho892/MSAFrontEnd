@@ -4,7 +4,7 @@
     display: flex;
     margin: auto;
     flex-direction: column;
-    background-color: #F5F5F5;
+    background-color: var(--grey);
 }
 
 .featured {
@@ -68,6 +68,18 @@
     background-color: var(--darkblue);
     position: absolute;
     bottom: calc(-4rem - 7px);
+}
+
+.featured::before {
+    position: absolute;
+    bottom: calc(-4rem - 7px);
+    z-index: 3;
+    left: 26rem;
+    content: '';
+    height: 4rem;
+    width: 5px;
+    background-color: var(--grey);
+
 }
 
 

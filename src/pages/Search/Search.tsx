@@ -60,7 +60,7 @@ function Search() {
             bg={containerColor}>
             <NavBar />
             <Box
-                borderRadius="lg"
+                borderRadius="1px"
                 overflow="hidden"
                 bg={bgColor}
                 textAlign="left"

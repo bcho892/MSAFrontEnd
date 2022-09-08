@@ -1,9 +1,11 @@
 .container {
+    position: relative;
     padding-top: 4rem;
     display: flex;
     height: 100vh;
     justify-content: center;
     align-items: center;
+    background-color: var(--grey);
 }
 
 .info {
@@ -14,21 +16,54 @@
     padding: 1rem;
 }
 
+
+.infoholder {
+    position: relative;
+    z-index: 10;
+}
+
+
+*:is(.poly1, .poly2) {
+    position: absolute;
+    height: 80vh;
+    width: 14rem;
+    z-index: 1;
+
+}
+
+.poly1 {
+    clip-path: polygon(0 0, 100% 0%, 62% 100%, 0 100%);
+    background-color: var(--lightblue);
+    top: 0;
+    left: 0;
+
+}
+
+.poly2 {
+    clip-path: polygon(38% 0, 100% 0%, 100% 100%, 0 100%);
+    background-color: var(--darkblue);
+    bottom: 0;
+    right: 0;
+}
+
 @media only screen and (max-width: 850px) {
     .infoholder {
         flex-direction: column;
     }
-    .movieimage{
+
+    .movieimage {
         height: 15rem;
         display: flex;
         overflow: hidden;
         align-items: center;
     }
-    .movieimage img{
+
+    .movieimage img {
 
         width: 30rem;
     }
-    .bottomdivider{
+
+    .bottomdivider {
         display: none;
     }
 }

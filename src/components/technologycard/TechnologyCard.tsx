@@ -1,4 +1,4 @@
-import React from 'react'
+import styles from './TechnologyCard.module.css'
 import {
     Box,
     useColorMode
@@ -18,14 +18,13 @@ export default function TechnologyCard({ skill, description }: Props) {
             flexDirection='column'
             alignContent='center'
             justifyContent='center'
-            height='15rem'
+            minH='20rem'
             borderWidth='1px'
-            borderRadius='lg'
+            borderRadius='1px'
             gap='1rem'
             padding="0 1rem"
-            bg={colorMode === 'light' ? 'white' : 'whiteAlpha.50'}>
-
-
+            bg={colorMode === 'light' ? 'white' : 'whiteAlpha.50'}
+            className={styles.container}>
             <Box
                 display="flex"
                 flexDirection="column"
