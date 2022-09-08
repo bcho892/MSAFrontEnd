@@ -11,7 +11,7 @@
     display: flex;
 
     gap: 2rem;
-    
+
     flex-direction: column;
     align-items: center;
 
@@ -31,16 +31,17 @@
     align-items: center;
 }
 
-.container img{
+.container img {
     border-radius: 10px;
     transition: transform 1s;
     cursor: pointer;
 }
 
-.container img:hover{
+.container img:hover {
     transform: scale(0.99);
 }
 
-.msa{
-    color: #2B6CB0;
+.msa {
+    color: var(--darkblue);
 }
+

@@ -23,14 +23,9 @@ type Category = {
     functionOption: string
 }
 
-const categories: Category[] = [{ name: "Upcoming", functionOption: "/x/upcoming?info=mini_info&limit=12&page=1&titleType=movie&year=2022" },
-{ name: "Action", functionOption: "?info=mini_info&limit=12&page=1&titleType=movie&genre=Action&year=2022" }
+const categories: Category[] = [{ name: "Action", functionOption: "?info=mini_info&limit=12&page=1&titleType=movie&genre=Action&year=2022" },
+{ name: "Comedy", functionOption: "?info=mini_info&limit=12&page=1&titleType=movie&genre=Comedy&year=2022" }
 ];
-
-
-const stateChange = (data:any) => {
-    
-}
 
 const Main = () => {
     const [defaultMovies, setDefaultMovies] = React.useState<any[]>([]);
@@ -106,90 +101,98 @@ const Main = () => {
     }
 
     return (
-        <Box
-            bg="blackAlpha.100"
-            className={styles.container}
-        >
+        <>
             <NavBar />
-            <div className={styles.featured}>
-                {featuredMovie.primaryImage &&
-                    <Image
-                        src={featuredMovie.primaryImage.url}
-                        alt=''
-                        maxWidth='50vw'
-                        minWidth='20rem'
-   
-                        objectFit='cover' />
-                }
-                <Box className={styles.featuredtext}
-                    backgroundColor={smallScreen ? "transparent" : featuredBg}
-                >
-                    {featuredMovie.id ?
-                        <>
-                            <Heading
-                                size={smallScreen ? "2xl" : "3xl"}>
-                                {featuredMovie.titleText.text}
-                            </Heading>
-                            <Heading size='md'>
-                                Featured
-                            </Heading>
-                            <Text
-                                fontSize="md"
-                                maxW="800px">
-                                {featuredDesc}
-                            </Text>
-                            <Tooltip label={`See |${featuredMovie.titleText.text}|'s details`}>
-                                <Button
-                                    size='lg'
-                                    colorScheme={smallScreen ? 'white' : 'blue'}
-                                    bg={smallScreen ? 'none' : '#63B3ED'}
-                                    _hover={{ bg: smallScreen ? 'none' : '#BEE3F8' }}
-                                    variant={smallScreen ? "outline" : "solid"}
-                                    onClick={() => toFeatured(featuredMovie.id)}>
-                                    More
-                                </Button>
-                            </Tooltip>
-                        </> :
-                        <Progress width="80%" isIndeterminate data-testid="loadingbar" />
+            {additionalFeatured.length > 0 ? <Box
+                className={styles.container}
+            >
+                <div className={styles.featured}>
+                    <Box className={styles.leftbox}></Box>
+                    {featuredMovie.primaryImage &&
+                        <Image
+                            src={featuredMovie.primaryImage.url}
+                            alt=''
+                            maxHeight='35rem'
+                            objectFit='cover' />
                     }
-                </Box>
+                    <Box className={styles.featuredtext}
+                    >
+                        {featuredMovie.id ?
+                            <>
+                                <Heading
+                                    size={smallScreen ? "2xl" : "3xl"}>
+                                    {featuredMovie.titleText.text}
+                                </Heading>
+                                <Heading size='md'>
+                                    Featured
+                                </Heading>
+                                <Text
+                                    fontSize="md"
+                                    maxW="800px">
+                                    {featuredDesc}
+                                </Text>
+                                <Tooltip label={`See |${featuredMovie.titleText.text}|'s details`}>
+                                    <Button
+                                        borderRadius="1px"
+                                        size='lg'
+                                        variant={smallScreen ? 'outline' : 'darkblue'}
+                                        colorScheme={smallScreen ? 'white' : ''}
+                                        onClick={() => toFeatured(featuredMovie.id)}>
+                                        More
+                                    </Button>
+                                </Tooltip>
+                            </> :
+                            <Progress width="80%" isIndeterminate data-testid="loadingbar" />
+                        }
+                    </Box>
+                    <Box className={styles.rightbox} />
 
-            </div>
+                </div >
 
 
-            <MovieRow children={defaultMovies.map((item, index) => {
-                return item.primaryImage && item.primaryImage.url ?
-                    <MovieCard key={item.id} title={item.titleText.text}
-                        imgurl={item.primaryImage.url}
-                        year={item.releaseYear.year}
-                        id={item.id} />
-                    : null;
-            })}
-                genre={"Currently Popular"}
-            />
-
-
-
-            {additionalFeatured.length > 0 ? additionalFeatured.map((item, index) => {
-                let currentRow = item.map((genre, index1) => {
-                    return genre.primaryImage && genre.primaryImage.url ?
-                        <MovieCard
-                            key={genre.id} title={genre.titleText.text}
-                            imgurl={genre.primaryImage.url}
-                            year={genre.releaseYear.year}
-                            id={genre.id} />
+                <MovieRow children={defaultMovies.map((item, index) => {
+                    return item.primaryImage && item.primaryImage.url ?
+                        <MovieCard key={item.id} title={item.titleText.text}
+                            imgurl={item.primaryImage.url}
+                            year={item.releaseYear.year}
+                            id={item.id} />
                         : null;
-                })
+                })}
+                    genre={"Currently Popular"}
+                />
 
-                return <div key={index}>
-                    <MovieRow
-                        genre={categories[index].name}
-                        children={currentRow} />
-                </div>;
-            }) : <Progress width="50rem" isIndeterminate data-testid="loadingbar" />}
 
-        </Box >
-    )
+
+                {
+                    additionalFeatured.length > 0 ? additionalFeatured.map((item, index) => {
+                        let currentRow = item.map((genre, index1) => {
+                            return genre.primaryImage && genre.primaryImage.url ?
+                                <MovieCard
+                                    key={genre.id} title={genre.titleText.text}
+                                    imgurl={genre.primaryImage.url}
+                                    year={genre.releaseYear.year}
+                                    id={genre.id} />
+                                : null;
+                        })
+
+                        return <div key={index}>
+                            <MovieRow
+                                genre={categories[index].name}
+                                children={currentRow} />
+                        </div>;
+                    }) : <Progress width="50rem" isIndeterminate data-testid="loadingbar" />
+                }
+
+            </Box > :
+                <Box display="flex"
+                    height="100vh"
+                    justifyContent="center"
+                    alignItems="center"
+                    width="100vw">
+                    < Progress width="50rem"
+                        isIndeterminate data-testid="loadingbar" />
+                </Box>}
+        </>)
 }
 
 export default Main

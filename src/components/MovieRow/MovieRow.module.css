@@ -1,31 +1,118 @@
 .movierow {
-    padding: 1rem 0;
+    position: relative;
+    padding: 1rem 4rem;
+    margin: 0 5rem;
     display: flex;
     overflow-x: scroll;
     gap: 1rem;
     position: relative;
     align-items: center;
-    overflow-y:visible;
+    overflow-y: visible;
+    scroll-behavior: smooth;
 }
 
-.movieheading{
+.moviewrapper::after {
+    position: absolute;
+    content: '';
+    width: 40vw;
+    height: 4rem;
+    background-color: var(--lightblue);
+    left: 0;
+    bottom: -4.5rem;
+}
+
+.moviewrapper::before {
+    position: absolute;
+    content: '';
+    width: 40%;
+    height: 3rem;
+    background-color: var(--lightblue);
+    right: 0;
+    bottom: -3.5rem;
+}
+
+.movieheading {
     position: relative;
 }
 
-.movieheading::after{
-    height:3px;
+.movieheading::after {
+    height: 3px;
     width: 80%;
-    background:rgb(33,33,33);
+    background: rgb(33, 33, 33);
     content: '';
     position: absolute;
     bottom: -8px;
-    left:0;
+    left: 0;
 }
 
-@media only screen and (max-width: 600px) {
+.scrollbutton {
+    z-index: 20;
+    position: absolute;
+    width: 10rem;
+    height: 23rem;
+    background-color: var(--darkblue);
+    opacity: 0.9;
+    transition: opacity 0.5s, background-color 0.5s;
+    cursor: pointer;
+    user-select: none;
+}
+
+.scrollbutton:hover {
+    background-color: var(--lightblue);
+}
+
+.left {
+    left: 0;
+    clip-path: polygon(38% 0, 100% 0%, 100% 100%, 0 100%);
+}
+
+.left::after {
+    position: absolute;
+    content: '';
+    color: white;
+    border-right: 10px solid;
+    border-bottom: 10px solid;
+    height: 30px;
+    width: 30px;
+    transform: rotate(135deg);
+    bottom: 3rem;
+    right: 2rem;
+}
+
+.right {
+    top: 7rem;
+    right: 0;
+    clip-path: polygon(0 0, 100% 0%, 62% 100%, 0 100%);
+}
+
+.right::after {
+    position: absolute;
+    content: '';
+    color: white;
+    border-right: 10px solid;
+    border-bottom: 10px solid;
+    height: 30px;
+    width: 30px;
+    transform: rotate(-45deg);
+    top: 3rem;
+    left: 2rem;
+}
+
+.off {
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+@media only screen and (max-width: 700px) {
     .movierow {
+        margin: 0;
         flex-direction: column;
         overflow: hidden;
+        padding: 1rem 0;
+    }
+
+    .scrollbutton {
+        display: none;
     }
 
 }

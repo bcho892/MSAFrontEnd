@@ -10,6 +10,37 @@
 
 }
 
+.buttoncontainer {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    bottom: 4rem;
+}
+
+.infobutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 3rem;
+    width: 3rem;
+    margin-left: auto;
+    opacity: 0.9;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.2s ease-in;
+}
+
+#infoicon {
+    height: 1.7rem;
+    width: 1.7rem;
+}
+
+.infobutton:hover {
+    transform: translateY(-10px);
+}
+
 .extrainfo {
     position: absolute;
     z-index: 900;
@@ -23,6 +54,9 @@
 
 
 .container {
+    text-align: center;
+    display: flex;
+    position: relative;
     cursor: pointer;
     min-width: 13rem;
     height: 20rem;
@@ -31,15 +65,11 @@
 
 .container img {
     height: 20rem;
-    width:auto;
+    width: auto;
 }
 
-.container:hover  {
-    transform: translateY(-10px);
-   
-}
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
     .container {
         height: 9rem;
         width: 90%;

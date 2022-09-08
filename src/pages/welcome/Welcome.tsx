@@ -8,6 +8,7 @@ import detailsEx from './chakmoviesdet.png'
 import searchEx from './chakmoviessearch.png'
 import mainEx from './chakmoviesmain.png'
 import { motion } from 'framer-motion'
+import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import {
     Button,
     ButtonGroup,
@@ -36,12 +37,14 @@ const openLink = (url: string) => {
 }
 
 export default function Welcome() {
+
     const navigate = useNavigate();
     const toMain = React.useCallback(() => navigate('/main', { replace: true }), [navigate]);
     const toSearchEx = React.useCallback(() => navigate('/search/Steve Jobs/25/Biography', { replace: true }), [navigate])
     const { colorMode } = useColorMode();
     return (
         <div>
+            <LoadingScreen />
             <NavBar />
             <div className={styles.container}>
                 <motion.div
@@ -60,7 +63,7 @@ export default function Welcome() {
                         <Heading
                             size="xl"
                             color={colorMode === "light" ? "gray.700" : "white"}>
-                            Phase 2 Front End
+                            Phase 3 Front End
                         </Heading>
                         <Text
                             fontSize='xl'
@@ -70,7 +73,7 @@ export default function Welcome() {
                             Made by <Link color='blue.500' onClick={() => openLink("https://github.com/bcho892")}>bcho892</Link>.</Text>
                         <ButtonGroup
                         >
-                            <Button size='lg' rightIcon={<ArrowForwardIcon />} colorScheme='blue' onClick={toMain}>
+                            <Button size='lg' rightIcon={<ArrowForwardIcon />} variant='darkblue' onClick={toMain}>
                                 To App
                             </Button>
                             <Button size='lg'

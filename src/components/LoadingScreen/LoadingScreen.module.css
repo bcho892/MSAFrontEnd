@@ -1,0 +1,65 @@
+.loading {
+    z-index: 999;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: var(--darkblue);
+    transition: all 3s;
+}
+
+.loading.out {
+    top: -1000vh;
+}
+
+.logowrapper {
+    position: relative;
+    right: 100vw;
+    transition: right 1s;
+}
+
+.logowrapper.on {
+    right: 0;
+}
+
+*:is(.box1, .box2) {
+    position: absolute;
+    height: 40vw;
+    width: 40vw;
+    background-color: white;
+    transform: rotate(45deg);
+    transition: transform 1s ease-in-out;
+}
+
+.box1 {
+    top: -20vw;
+    left: 0;
+}
+
+.box1.on {
+    transform: translate(50%, 50%) rotate(45deg);
+}
+
+.box1.out {
+    transform: translateY(-40vw) rotate(45deg);
+}
+
+.box2 {
+    bottom: -20vw;
+    right: 0;
+}
+
+.box2.on {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.box2.delete {
+    transform: translate(100vw, 40vw);
+}
+
+.box2.out {
+    transform: translateY(40vw) rotate(45deg);
+}

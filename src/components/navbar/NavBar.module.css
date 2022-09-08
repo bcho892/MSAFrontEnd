@@ -1,16 +1,21 @@
 .container{
     position:fixed;
     top:0;
+    overflow: hidden;
     width: 100vw;
-    height: 3.5rem;
+    height: 4.5rem;
     display: flex;
     align-items: center;
     padding: 0 2rem;
-    box-shadow: 0px 0px 5px rgb(33,33,33);
-    z-index: 999;
+    z-index: 998;
+}
+
+.logo{
+    height: 2rem;
 }
 
 ul{
+
     display: flex;
     list-style: none;
     gap: 3rem;

@@ -1,15 +1,17 @@
 import * as React from 'react';
 import styles from './NavBar.module.css';
 import {
-    Heading,
     IconButton,
     useColorMode,
     useColorModeValue,
     Box,
     ButtonGroup,
-    Tooltip
+    Tooltip,
+    Button,
+    useMediaQuery
 } from '@chakra-ui/react'
 import { Search2Icon, MoonIcon, SunIcon, CheckIcon } from '@chakra-ui/icons';
+import { ReactComponent as Logo } from './logo.svg'
 import { useNavigate } from 'react-router-dom'
 import SearchBar from '../SearchBar/SearchBar';
 import GameModal from '../GameModal/GameModal';
@@ -19,8 +21,9 @@ type modalManagement = {
 }
 
 export default function NavBar() {
-    const [modalStates, setModalStates] = React.useState<modalManagement>({ search: false, game: false });
 
+    const [modalStates, setModalStates] = React.useState<modalManagement>({ search: false, game: false });
+    const [smallScreen] = useMediaQuery('(max-width: 700px)')
     const handleSearch = () => {
         setModalStates({ ...modalStates, search: true });
     }
@@ -43,39 +46,50 @@ export default function NavBar() {
     const logoColor = useColorModeValue("gray.600", "white")
     return (
         <Box className={styles.container}
-            bg={navColor}
+            bg="rgb(33,33,33)"
             data-testid='navbg'>
             <GameModal closeHandler={onGameClosed} opened={modalStates.game} />
             <SearchBar closeHandler={onSearchClosed} opened={modalStates.search} />
-            <Heading
-                onClick={toWelcome}
-                cursor='pointer'
-                color={logoColor}
-                fontSize='2rem'
-                userSelect='none'>
-
-                ChakMovies
-            </Heading>
-
+            <Logo className={styles.logo} fill="white" onClick={() => toWelcome()} />
             <ButtonGroup
                 marginLeft="auto"
             >
                 <Tooltip label="Search Movies">
-                    <IconButton
+                    <Button
+                        variant="navbutton"
                         onClick={() => handleSearch()}
                         justifySelf='flex-end'
                         aria-label='black'
-                        icon={<Search2Icon />}
-                    />
+                        fontWeight='200'
+                        display='flex'
+                        gap='1rem'
+                        _hover={{
+                            transform: "scale(1.01)"
+                        }}
+                        _before={!smallScreen ? {
+                            position: "absolute",
+                            left: "-5px",
+                            content: "''",
+                            height: "7rem",
+                            width: "3px",
+                            bg: "white",
+                            transform: "rotate(15deg)"
+                        } : {}
+                        }
+                        rightIcon={<Search2Icon />}
+                    >{!smallScreen && "Search Movies"}</Button>
                 </Tooltip>
                 <Tooltip label="Play a game">
                     <IconButton
+                        variant="navbutton"
+
                         onClick={() => handleGame()}
                         aria-label='game'
                         icon={<CheckIcon />}
                     />
                 </Tooltip>
                 <IconButton
+                    variant="navbutton"
                     onClick={toggleColorMode}
                     className={styles.button}
                     aria-label='black'

@@ -1,5 +1,6 @@
-import React from 'react';
 import './App.css';
+import '@fontsource/nunito-sans'
+import theme from './theme';
 import { Route, Routes } from 'react-router-dom';
 import Welcome from './pages/welcome/Welcome';
 import Main from './pages/Main/Main';
@@ -10,7 +11,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 function App() {
   return (
     <div className="App">
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/main" element={<Main />} />

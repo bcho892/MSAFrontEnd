@@ -1,6 +1,6 @@
-:root{
-  --var1: #BEE9E8;
-  --var2: #62B6CB;
+:root {
+  --lightblue: #A0B4D4;
+  --darkblue: #041C45;
   --var3: #1B4965;
   --var4: #CAE9FF;
 }
@@ -39,6 +39,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

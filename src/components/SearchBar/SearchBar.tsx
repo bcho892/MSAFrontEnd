@@ -159,7 +159,7 @@ function SearchBar({ opened, closeHandler }: Props) {
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme='blue' data-testid='searchbtn' mr={3} onClick={() => makeSearch()} >
+                        <Button variant="darkblue" data-testid='searchbtn' mr={3} onClick={() => makeSearch()} >
                             Search
                         </Button>
                         <Button data-testid='closebtn' variant='ghost' onClick={() => handleClose()}>Close</Button>

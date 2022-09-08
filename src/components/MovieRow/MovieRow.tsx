@@ -7,64 +7,68 @@ type Props = {
     children: any
 }
 
+const scrollDistance: number = 400;
+
 export default function MovieRow({ genre, children }: Props) {
-    const bgclr = useColorModeValue("white", "gray.700");
-    const lineclr = useColorModeValue("#63B3ED", "gray.700");
+    const [currentScroll, setCurrentScroll] = React.useState<number>(0);
+
+    const ref: any = React.useRef(null)
+    const atLeft = (): boolean => {
+        return currentScroll === 0;
+    }
+
+    const atRight = (): boolean => {
+        if (!ref.current) return false;
+        return currentScroll === ref.current.scrollWidth - ref.current.clientWidth;
+    }
+    const scroll = (amount: number) => {
+        if (!ref) return;
+        ref.current.scrollLeft += amount;
+        setCurrentScroll(ref.current.scrollLeft);
+        console.log(currentScroll);
+    }
+
+
     return (
         <Box padding="1rem 2rem"
             position="relative"
-            _after={{
-                content: "''",
-                height: '80%',
-                width: '80%',
-                bgGradient: 'linear(to-r, #BEE3F8, #2C5282)',
-                position: 'absolute',
-                right: 0,
-                bottom: 0,
-                zIndex: -1,
-                borderRadius: "sm",
-            }}
-            _before={{
-                content: "''",
-                height: '80%',
-                width: '70%',
-                bgGradient: 'linear(to-l, white, #EBF8FF)',
-                position: 'absolute',
-                left: 0,
-                top: 0,
-                zIndex: -1,
-                borderRadius: "sm",
-
-            }}
             margin="2rem 0"
         >
             <Stack direction="row"
+                justifyContent="center"
                 margin="2rem 0">
                 <motion.div
                     initial={{ y: -35, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     viewport={{ once: true }}>
-
                     <Heading
                         position="relative"
-                        _after={{
-                            height: "3px",
-                            width: "80%",
-                            background: lineclr,
-                            content: "''",
-                            position: "absolute",
-                            bottom: "-8px",
-                            left: 0,
-                        }}
-                        fontWeight="500"
+                        fontWeight="900"
                     >{genre}
                     </Heading>
                 </ motion.div>
             </Stack>
             <Box
+                className={styles.moviewrapper}
             >
-                <Box className={styles.movierow}
-                >{children}</Box>
+                <Box
+                    onClick={() => scroll(-scrollDistance)}
+                    className={`${styles.scrollbutton} ${styles.left} ` + (atLeft() && `${styles.off}`)}>
+                </Box>
+                <Box
+                    ref={ref}
+                    onScroll={() => setCurrentScroll(ref.current.scrollLeft)}
+                    className={styles.movierow}
+                    sx={
+                        {
+                            '::-webkit-scrollbar': { display: 'none' }
+                        }}>
+                    {children}
+                </Box>
+                <Box
+                    onClick={() => scroll(scrollDistance)}
+                    className={`${styles.scrollbutton} ${styles.right} ` + (atRight() && `${styles.off}`)}>
+                </Box>
             </Box>
         </Box >
     )

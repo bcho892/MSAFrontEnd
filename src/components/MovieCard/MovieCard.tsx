@@ -1,8 +1,10 @@
 import React from 'react'
 import styles from './MovieCard.module.css'
+import { ReactComponent as Info } from './infoicon.svg'
 import { Box, Image, Heading, useMediaQuery, useColorModeValue } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
+
 type Props = {
     title: string,
     imgurl: string;
@@ -11,7 +13,7 @@ type Props = {
 }
 
 function MovieCard({ id, title, imgurl, year }: Props) {
-    const [smallScreen] = useMediaQuery('(max-width: 600px)');
+    const [smallScreen] = useMediaQuery('(max-width: 700px)');
     const bgclr = useColorModeValue("white", "gray.700")
     const navigate = useNavigate();
     const toMovie = React.useCallback(() => navigate(`/movie/${id}`, { replace: false }), [navigate]);
@@ -25,18 +27,22 @@ function MovieCard({ id, title, imgurl, year }: Props) {
             <Box
                 onClick={toMovie}
                 className={styles.container}
-                display='flex'
-                alignItems='center'
                 objectFit='cover'
                 borderRadius='sm'
                 bg={bgclr}
                 overflow='hidden'
             >
+                {!smallScreen &&
+                    <Box className={styles.buttoncontainer}>
+                        <Box className={styles.infobutton}>
+                            <Info id={styles.infoicon} />
+                        </Box>
+                    </Box>}
                 <Box>
                     <Image
                         className={styles.overlay}
                         src={imgurl}
-                        alt='img' />
+                        alt={title} />
                 </Box>
                 <Box
                     alignItems={smallScreen ? "center" : ""}
