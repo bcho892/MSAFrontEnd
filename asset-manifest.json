@@ -1,18 +1,26 @@
 {
   "files": {
-    "main.css": "/MSAFrontEnd/static/css/main.0c187d41.css",
-    "main.js": "/MSAFrontEnd/static/js/main.181a026c.js",
+    "main.css": "/MSAFrontEnd/static/css/main.7df5b55f.css",
+    "main.js": "/MSAFrontEnd/static/js/main.61b5588e.js",
     "static/js/787.28cb0dcd.chunk.js": "/MSAFrontEnd/static/js/787.28cb0dcd.chunk.js",
     "static/media/chakmoviesmain.png": "/MSAFrontEnd/static/media/chakmoviesmain.c0089b9bca3f0154abc4.png",
     "static/media/chakmoviesdet.png": "/MSAFrontEnd/static/media/chakmoviesdet.15d17cb2a17ea1d00b8f.png",
+    "static/media/nunito-sans-all-400-normal.woff": "/MSAFrontEnd/static/media/nunito-sans-all-400-normal.6829d5bb0386828b00bc.woff",
     "static/media/chakmoviessearch.png": "/MSAFrontEnd/static/media/chakmoviessearch.a9758af8cf382c5814cc.png",
+    "static/media/nunito-sans-latin-400-normal.woff2": "/MSAFrontEnd/static/media/nunito-sans-latin-400-normal.5c4de521b020a610c232.woff2",
+    "static/media/nunito-sans-latin-ext-400-normal.woff2": "/MSAFrontEnd/static/media/nunito-sans-latin-ext-400-normal.3d7d18f958c14dddfbc0.woff2",
+    "static/media/nunito-sans-cyrillic-ext-400-normal.woff2": "/MSAFrontEnd/static/media/nunito-sans-cyrillic-ext-400-normal.f6d69d802ffb1d44610d.woff2",
+    "static/media/nunito-sans-cyrillic-400-normal.woff2": "/MSAFrontEnd/static/media/nunito-sans-cyrillic-400-normal.1dd0800644712a9519d0.woff2",
+    "static/media/nunito-sans-vietnamese-400-normal.woff2": "/MSAFrontEnd/static/media/nunito-sans-vietnamese-400-normal.d68ebb752ccf1a0cdcef.woff2",
+    "static/media/logo.svg": "/MSAFrontEnd/static/media/logo.e19e3bf539632efc30dac2c742600917.svg",
+    "static/media/infoicon.svg": "/MSAFrontEnd/static/media/infoicon.8c7f08d39bee2d3074aa852991c69a41.svg",
     "index.html": "/MSAFrontEnd/index.html",
-    "main.0c187d41.css.map": "/MSAFrontEnd/static/css/main.0c187d41.css.map",
-    "main.181a026c.js.map": "/MSAFrontEnd/static/js/main.181a026c.js.map",
+    "main.7df5b55f.css.map": "/MSAFrontEnd/static/css/main.7df5b55f.css.map",
+    "main.61b5588e.js.map": "/MSAFrontEnd/static/js/main.61b5588e.js.map",
     "787.28cb0dcd.chunk.js.map": "/MSAFrontEnd/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0c187d41.css",
-    "static/js/main.181a026c.js"
+    "static/css/main.7df5b55f.css",
+    "static/js/main.61b5588e.js"
   ]
 }
