@@ -46,7 +46,7 @@ export default function GameModal({ opened, closeHandler }: Props) {
             <ModalOverlay />
             <ModalContent>
                 <ModalBody>
-                    <ModalCloseButton />
+                    <ModalCloseButton data-testid="closebtn" />
                     <Box padding="2rem" display="flex" flexDir="column" gap="1rem">
                         <Heading>
                             Lets Play a Game!

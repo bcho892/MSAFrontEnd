@@ -19,7 +19,7 @@ export default function LoadingScreen() {
         setPhase(phase + 1);
     }, [phase, isPlaying])
     return (
-        <Box className={`${styles.loading} ` + (phase >= maxPhases && `${styles.out}`)} >
+        <Box data-testid="container" className={`${styles.loading} ` + (phase >= maxPhases && `${styles.out}`)} >
             <Box
                 className={`${styles.logowrapper} ` + (phase >= maxPhases - 1 && `${styles.on}`)} >
                 <Logo
@@ -28,7 +28,7 @@ export default function LoadingScreen() {
                     width='80vw' />
             </Box>
             <Box className={animateSquares(1)}></Box>
-            <Box className={animateSquares(2)}
+            <Box data-testid="box2" className={animateSquares(2)}
                 display={phase >= 5 ? 'none' : 'block'}></Box>
         </ Box >
     )

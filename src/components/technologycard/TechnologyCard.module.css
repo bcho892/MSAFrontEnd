@@ -1,7 +1,7 @@
 .container {
     position: relative;
     overflow: hidden;
-
+    max-width: 20rem;
 }
 
 .container::after {
@@ -12,4 +12,10 @@
     left: 0;
     position: absolute;
     background-color: var(--darkblue);
+}
+
+@media only screen and (max-width: 840px) {
+    .container {
+        max-width: 100%;
+    }
 }

@@ -44,7 +44,7 @@ function SearchResult({ title, year, rating, id }: Props) {
                         borderRadius="1px">
                         <Heading
                             data-testid="rating">
-                            {rating}
+                            {rating ? rating : "?"}
                         </Heading>
                     </Badge>
                 </Box>

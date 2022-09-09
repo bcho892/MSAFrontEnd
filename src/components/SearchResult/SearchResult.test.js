@@ -18,3 +18,10 @@ test("Has correct rating", () => {
     </Router>)
     expect(screen.getByTestId("rating")).toHaveTextContent("9");
 })
+
+test("Handles undefined rating", () => {
+    render(<Router>
+        <SearchResult title={mockInfo.title} year={mockInfo.year} rating={undefined} id={mockInfo.id} />
+    </Router>)
+    expect(screen.getByTestId("rating")).toHaveTextContent("?");
+})

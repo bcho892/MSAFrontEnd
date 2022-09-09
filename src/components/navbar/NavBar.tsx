@@ -56,6 +56,7 @@ export default function NavBar() {
             >
                 <Tooltip label="Search Movies">
                     <Button
+                        data-testid="search"
                         variant="navbutton"
                         onClick={() => handleSearch()}
                         justifySelf='flex-end'
@@ -81,19 +82,19 @@ export default function NavBar() {
                 </Tooltip>
                 <Tooltip label="Play a game">
                     <IconButton
+                        data-testid="game"
                         variant="navbutton"
-
                         onClick={() => handleGame()}
                         aria-label='game'
                         icon={<CheckIcon />}
                     />
                 </Tooltip>
                 <IconButton
+                    data-testid="colormode"
                     variant="navbutton"
                     onClick={toggleColorMode}
                     className={styles.button}
                     aria-label='black'
-                    data-testid='colormodebtn'
                     icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
                 />
             </ButtonGroup>

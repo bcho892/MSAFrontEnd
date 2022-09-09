@@ -4,9 +4,6 @@ import styles from './Welcome.module.css'
 import TechnologyCard from '../../components/technologycard/TechnologyCard';
 import { useNavigate } from 'react-router-dom';
 import { ExternalLinkIcon, ArrowForwardIcon } from '@chakra-ui/icons'
-import detailsEx from './chakmoviesdet.png'
-import searchEx from './chakmoviessearch.png'
-import mainEx from './chakmoviesmain.png'
 import { motion } from 'framer-motion'
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import {
@@ -17,27 +14,27 @@ import {
     Divider,
     Box,
     useColorMode,
-    Image,
     Link
 } from '@chakra-ui/react'
 
 type Tech = {
     name: string;
     description: string;
+    unsure: boolean;
 }
 
-const techUsed: Tech[] = [{ name: "chakraUI", description: "I used ChakraUI as my component library. This landing page is also inspired by their website." },
-{ name: "MoviesDatabase", description: "I used this API (Courtesy of rapidapi.com & Adriano Massimo) to help retrieve movie data for this web app." },
-{ name: "Github", description: "I used GitHub to maintain a backup of my work, as well as being able to keep track of my progress" },
-{ name: "TS React", description: "This app was created using React.js, while also taking advantage of TS's static typing" },
-{ name: "User Input", description: "Users are able to interact with the Web App by making use of the search feature (top right)" },]
+const techUsed: Tech[] = [{ name: "chakraUI", description: "I used ChakraUI as my component library. This landing page is also inspired by their website.", unsure: false },
+{ name: "MoviesDatabase", description: "I used this API (Courtesy of rapidapi.com & Adriano Massimo) to help retrieve movie data for this web app.", unsure: false },
+{ name: "Github", description: "I used GitHub to maintain a backup of my work, as well as being able to keep track of my progress", unsure: false },
+{ name: "TS React", description: "This app was created using React.js, while also taking advantage of TS's static typing", unsure: false },
+{ name: "User Input", description: "Users are able to interact with the Web App by making use of the search feature (top right)", unsure: false },]
 
-const advancedFeatures: Tech[] = [{ name: "Mobile First Development", description: "Using media breakpoints and having and awareness of how smaller screens interact with content, I have made sure my app is fully responsive to this." },
-{ name: "UI Scaliability", description: "Similarly to mobile first development, different screen sizes warrant different experiences, and I have accounted for such also using media queries and conditionals" },
-{ name: "Fluid Transition", description: "Throughout the site, I have implemented a bunch of transitions/animations which make use of both Framer Motion as well as pure CSS" },
-{ name: "(Own) API connection", description: "I have included a Flask REST API from my Data Science project as a small mini-feature, which is cloud hosted on GCP" },
-{ name: "Unit Testing", description: "Using the Jest Testing Library, I have included unit tests to make sure my componenents and logic are working as intended without worrying about implementation details, resulting in more robust development" },
-{ name: "Complex FE Logic", description: "This app includes aspects which I would consider to be 'complex' such as: routing, params as props, props being passed down multiple components" }]
+const advancedFeatures: Tech[] = [{ name: "Mobile First Development", description: "Using media breakpoints and having and awareness of how smaller screens interact with content, I have made sure my app is fully responsive to this.", unsure: false },
+{ name: "UI Scaliability", description: "Similarly to mobile first development, different screen sizes warrant different experiences, and I have accounted for such also using media queries and conditionals", unsure: false },
+{ name: "Fluid Transition", description: "Throughout the site, I have implemented a bunch of transitions/animations which make use of both Framer Motion as well as pure CSS", unsure: false },
+{ name: "(Own) API connection", description: "I have included a Flask REST API from my Data Science project as a small mini-feature, which is cloud hosted on GCP", unsure: false },
+{ name: "Unit Testing", description: "Using the Jest Testing Library, I have included unit tests to make sure my componenents and logic are working as intended without worrying about implementation details, resulting in more robust development", unsure: false },
+{ name: "Complex FE Logic", description: "This app includes aspects which I would consider to be 'complex' such as: routing, params as props, props being passed down multiple components", unsure: true }]
 
 const openLink = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer');
@@ -89,8 +86,16 @@ export default function Welcome() {
                             >Github</Button>
                         </ButtonGroup>
 
+                        <Heading marginTop="9rem">How my App works </Heading>
+                        <Divider />
+                        <Text fontSize="xl" maxWidth="800px"
+                            padding="0 1rem"
+                        >
+                            Using the <Link color='blue.500' onClick={() => openLink("https://rapidapi.com/SAdrian/api/moviesdatabase/")}>MoviesDatabase API</Link>,
+                            I have attempted to create a site that resembles that of a streaming site (e.g Netflix).
+                            Users are able to both search for as well as explore already popular shows.
+                        </Text>
                         <Heading
-                            marginTop="9rem"
                         >How I met the Requirements (Basic)
                         </Heading>
                         <Divider />
@@ -101,6 +106,7 @@ export default function Welcome() {
                                     return <TechnologyCard
                                         key={index}
                                         skill={value.name}
+                                        unsure={value.unsure}
                                         description={value.description}
                                     />
                                 })}
@@ -115,27 +121,13 @@ export default function Welcome() {
                                     return <TechnologyCard
                                         key={index}
                                         skill={value.name}
+                                        unsure={value.unsure}
                                         description={value.description}
                                     />
                                 })}
                             </div>
                         </Box>
-                        <Heading>How my App works </Heading>
-                        <Divider />
-                        <Text fontSize="xl" maxWidth="800px"
-                            padding="0 1rem"
-                        >
-                            Using the <Link color='blue.500' onClick={() => openLink("https://rapidapi.com/SAdrian/api/moviesdatabase/")}>MoviesDatabase API</Link>,
-                            I have attempted to create a site that resembles that of a streaming site (e.g Netflix).
-                            Users are able to both search for as well as explore already popular shows.
-                        </Text>
-                        <Image src={detailsEx}
-                            onClick={toMain} />
-                        <Image src={searchEx}
-                            onClick={toSearchEx} />
-                        <Image src={mainEx}
-                            onClick={toMain}
-                            marginBottom="2rem" />
+
                     </div>
                 </motion.div>
 

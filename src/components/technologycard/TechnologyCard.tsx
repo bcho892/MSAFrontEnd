@@ -3,18 +3,18 @@ import {
     Box,
     useColorMode
 } from '@chakra-ui/react'
-import { CheckCircleIcon } from '@chakra-ui/icons'
+import { CheckCircleIcon, QuestionIcon } from '@chakra-ui/icons'
+
 type Props = {
     skill: string;
     description: string;
-
+    unsure: boolean;
 }
 
-export default function TechnologyCard({ skill, description }: Props) {
+export default function TechnologyCard({ skill, description, unsure }: Props) {
     const { colorMode } = useColorMode();
     return (
         <Box display='flex'
-            maxWidth='20rem'
             flexDirection='column'
             alignContent='center'
             justifyContent='center'
@@ -37,7 +37,7 @@ export default function TechnologyCard({ skill, description }: Props) {
                 textTransform='uppercase'
                 ml='2'
             >
-                <CheckCircleIcon />
+                {unsure ? <QuestionIcon /> : <CheckCircleIcon />}
                 {skill}
 
 

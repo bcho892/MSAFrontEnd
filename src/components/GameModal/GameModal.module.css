@@ -23,5 +23,5 @@
 }
 
 .mostprob p {
-    color: #4299E1;
+    color: var(--darkblue);
 }

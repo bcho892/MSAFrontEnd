@@ -18,6 +18,7 @@ import {
     IconButton,
     ButtonGroup,
     Tooltip,
+    useColorMode
 } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import HomeIcon from '../../Icons/HomeIcon/HomeIcon'
@@ -26,6 +27,7 @@ import { formatTime } from '../../methods/Helper'
 
 function Movie() {
     let { id } = useParams()
+    const { colorMode } = useColorMode();
     const [movieInfo, setMovieInfo] = React.useState<any>({});
     const [director, setDirector] = React.useState<string>("");
     const navigate = useNavigate();
@@ -51,10 +53,10 @@ function Movie() {
         getMovieInfo();
         getDirector();
     }, [])
-
     return (
 
-        <div className={styles.container}>
+        <Box className={styles.container}
+            bg={colorMode === 'light' ? 'var(--grey)' : 'none'}>
             <NavBar />
             <Box className={styles.poly1}></Box>
             <Box className={styles.poly2}></Box>
@@ -64,7 +66,7 @@ function Movie() {
                     whileInView={{ y: 0, opacity: 1 }}
                     viewport={{ once: true }}>
                     <Box display="flex"
-                        bg="white"
+                        bg={colorMode === 'light' ? "white" : "none"}
                         borderRadius="1px"
                         borderWidth="1px"
                         overflow="hidden"
@@ -163,7 +165,7 @@ function Movie() {
                 </motion.div>
                 : <Progress width="80%" isIndeterminate />}
 
-        </div>
+        </Box>
     )
 }
 

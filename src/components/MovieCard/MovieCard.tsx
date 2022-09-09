@@ -25,6 +25,7 @@ function MovieCard({ id, title, imgurl, year }: Props) {
             viewport={{ once: true }}
         >
             <Box
+                data-testid="container"
                 onClick={toMovie}
                 className={styles.container}
                 objectFit='cover'

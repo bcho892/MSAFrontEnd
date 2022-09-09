@@ -53,6 +53,7 @@ export default function MovieRow({ genre, children }: Props) {
             >
                 <Box
                     onClick={() => scroll(-scrollDistance)}
+                    data-testid="leftbutton"
                     className={`${styles.scrollbutton} ${styles.left} ` + (atLeft() && `${styles.off}`)}>
                 </Box>
                 <Box
@@ -67,6 +68,7 @@ export default function MovieRow({ genre, children }: Props) {
                 </Box>
                 <Box
                     onClick={() => scroll(scrollDistance)}
+                    data-testid="rightbutton"
                     className={`${styles.scrollbutton} ${styles.right} ` + (atRight() && `${styles.off}`)}>
                 </Box>
             </Box>
