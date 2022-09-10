@@ -38,6 +38,7 @@ function Movie() {
             .then(response => response.json())
             .then(response => {
                 setMovieInfo(response.results);
+                console.log(response.results);
             })
             .catch(err => console.error(err));
     }
@@ -111,7 +112,7 @@ function Movie() {
                                 textAlign="left"
                                 maxH="13rem"
                                 overflowY="auto">
-                                {movieInfo.plot.PlotText ? movieInfo.plot.plotText.plainText : "None found"}
+                                {movieInfo.plot.plotText.plainText ? movieInfo.plot.plotText.plainText : "None found"}
                             </Text>
                             <Divider
                                 marginTop="auto"
