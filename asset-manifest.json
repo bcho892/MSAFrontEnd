@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/MSAFrontEnd/static/css/main.ca5d76b9.css",
-    "main.js": "/MSAFrontEnd/static/js/main.d5d94b55.js",
+    "main.js": "/MSAFrontEnd/static/js/main.b37c8e0a.js",
     "static/js/787.28cb0dcd.chunk.js": "/MSAFrontEnd/static/js/787.28cb0dcd.chunk.js",
     "service-worker.js": "/MSAFrontEnd/service-worker.js",
     "static/media/nunito-sans-all-400-normal.woff": "/MSAFrontEnd/static/media/nunito-sans-all-400-normal.6829d5bb0386828b00bc.woff",
@@ -14,11 +14,11 @@
     "static/media/infoicon.svg": "/MSAFrontEnd/static/media/infoicon.a7154bacbecba35e9a3cbb7e2beedca5.svg",
     "index.html": "/MSAFrontEnd/index.html",
     "main.ca5d76b9.css.map": "/MSAFrontEnd/static/css/main.ca5d76b9.css.map",
-    "main.d5d94b55.js.map": "/MSAFrontEnd/static/js/main.d5d94b55.js.map",
+    "main.b37c8e0a.js.map": "/MSAFrontEnd/static/js/main.b37c8e0a.js.map",
     "787.28cb0dcd.chunk.js.map": "/MSAFrontEnd/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ca5d76b9.css",
-    "static/js/main.d5d94b55.js"
+    "static/js/main.b37c8e0a.js"
   ]
 }
