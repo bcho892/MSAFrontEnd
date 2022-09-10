@@ -32,7 +32,7 @@ export default function GameModal({ opened, closeHandler }: Props) {
     const handleSubmit = async () => {
         try {
             if (url.searchUrl === "" || url.searchUrl === url.successfulUrl) return;
-            const res = await fetch(`${process.env.REACT_APP_PREDICTION_API_URL}${url.searchUrl}`);
+            const res = await fetch(`https://img-detection-20220821t145926-vsmhzmkauq-ts.a.run.app/get_image?imageUrl=${url.searchUrl}`);
             const data = await res.json();
             if (data && data.success) setUrl({ ...url, successfulUrl: url.searchUrl });
             setResults(data);

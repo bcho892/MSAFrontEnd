@@ -111,7 +111,7 @@ function Movie() {
                                 textAlign="left"
                                 maxH="13rem"
                                 overflowY="auto">
-                                {movieInfo.plot.plotText.plainText ? movieInfo.plot.plotText.plainText : "None found"}
+                                {movieInfo.plot.plotText ? movieInfo.plot.plotText.plainText : "None found"}
                             </Text>
                             <Divider
                                 marginTop="auto"
