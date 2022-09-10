@@ -38,7 +38,6 @@ function Movie() {
             .then(response => response.json())
             .then(response => {
                 setMovieInfo(response.results);
-                console.log(response.results);
             })
             .catch(err => console.error(err));
     }
