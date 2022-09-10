@@ -96,7 +96,7 @@ function Movie() {
                                     </Badge>
                                 })}
                                 <Badge colorScheme="blue">
-                                    {movieInfo.releaseYear.year}
+                                    {movieInfo.releaseYear ? movieInfo.releaseYear.year : "?"}
                                 </Badge>
                                 {movieInfo.runtime && <Badge colorScheme="blue" variant="outline">
                                     {formatTime(movieInfo.runtime.seconds)}
@@ -111,7 +111,7 @@ function Movie() {
                                 textAlign="left"
                                 maxH="13rem"
                                 overflowY="auto">
-                                {movieInfo.plot ? movieInfo.plot.plotText.plainText : "None found"}
+                                {movieInfo.plot.PlotText ? movieInfo.plot.plotText.plainText : "None found"}
                             </Text>
                             <Divider
                                 marginTop="auto"
@@ -152,7 +152,7 @@ function Movie() {
                                     </Stat>
                                     <Stat>
                                         <StatNumber>
-                                            {movieInfo.releaseDate.day}-{movieInfo.releaseDate.month}-{movieInfo.releaseDate.year}
+                                            {movieInfo.releaseDate ? `${movieInfo.releaseDate.day}-${movieInfo.releaseDate.month}-${movieInfo.releaseDate.year}` : "?"}
                                         </StatNumber>
                                         <StatHelpText>
                                             Date released
