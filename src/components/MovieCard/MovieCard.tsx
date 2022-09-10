@@ -51,7 +51,6 @@ function MovieCard({ id, title, imgurl, year }: Props) {
                     height="100%"
                 >
                     <Heading className={styles.extrainfo}
-                        fontSize="1.5rem"
                     >
                         {title} <br />
                         ({year})

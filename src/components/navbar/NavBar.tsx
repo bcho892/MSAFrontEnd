@@ -56,6 +56,8 @@ export default function NavBar() {
             >
                 <Tooltip label="Search Movies">
                     <Button
+                        minWidth={!smallScreen ? "4.5rem" : "2rem"}
+                        padding={smallScreen ? "0" : ""}
                         data-testid="search"
                         variant="navbutton"
                         onClick={() => handleSearch()}
@@ -63,7 +65,7 @@ export default function NavBar() {
                         aria-label='black'
                         fontWeight='200'
                         display='flex'
-                        gap='1rem'
+                        gap="1rem"
                         _hover={{
                             transform: "scale(1.01)"
                         }}
@@ -82,6 +84,16 @@ export default function NavBar() {
                 </Tooltip>
                 <Tooltip label="Play a game">
                     <IconButton
+                        minWidth={!smallScreen ? "4.5rem" : "2rem"}
+                        _before={!smallScreen ? {
+                            position: "absolute",
+                            left: "-5px",
+                            bottom: '-2rem',
+                            content: "''",
+                            height: "10rem",
+                            width: "3px",
+                            bg: "white"
+                        } : { display: "none" }}
                         data-testid="game"
                         variant="navbutton"
                         onClick={() => handleGame()}
@@ -90,6 +102,17 @@ export default function NavBar() {
                     />
                 </Tooltip>
                 <IconButton
+                    minWidth={!smallScreen ? "4.5rem" : "2rem"}
+
+                    _before={!smallScreen ? {
+                        position: "absolute",
+                        left: "-5px",
+                        bottom: '-2rem',
+                        content: "''",
+                        height: "10rem",
+                        width: "3px",
+                        bg: "white"
+                    } : { display: "none" }}
                     data-testid="colormode"
                     variant="navbutton"
                     onClick={toggleColorMode}

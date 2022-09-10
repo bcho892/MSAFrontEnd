@@ -30,7 +30,7 @@ export default function MovieRow({ genre, children }: Props) {
 
 
     return (
-        <Box padding="1rem 2rem"
+        <Box 
             position="relative"
             margin="2rem 0"
         >

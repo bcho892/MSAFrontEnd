@@ -2,7 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://bcho892.github.io/",
+  "homepage": "https://bcho892.github.io/MSAFrontEnd",
   "dependencies": {
     "-": "^0.0.1",
     "@chakra-ui/icons": "^2.0.4",

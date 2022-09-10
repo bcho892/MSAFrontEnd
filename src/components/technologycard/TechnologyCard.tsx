@@ -36,6 +36,7 @@ export default function TechnologyCard({ skill, description, unsure }: Props) {
                 fontSize='2rem'
                 textTransform='uppercase'
                 ml='2'
+                className={styles.title}
             >
                 {unsure ? <QuestionIcon /> : <CheckCircleIcon />}
                 {skill}

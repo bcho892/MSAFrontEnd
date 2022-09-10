@@ -57,7 +57,6 @@ export default function Welcome() {
                     viewport={{ once: true }}>
                     <div className={styles.heading}>
                         <Heading
-
                             size="4xl"
                             maxWidth="800px">
 
@@ -114,8 +113,7 @@ export default function Welcome() {
                         </Box>
                         <Heading>What about advanced?</Heading>
                         <Divider />
-                        <Box padding="1rem"
-                            maxW="1100px">
+                        <Box maxW="1100px">
                             <div className={styles.skillholder}>
                                 {advancedFeatures.map((value, index) => {
                                     return <TechnologyCard

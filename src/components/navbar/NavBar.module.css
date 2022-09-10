@@ -25,6 +25,6 @@ ul{
 
 @media only screen and (max-width: 420px){
     .container{
-        padding: 0 1rem;
+        padding: 0;
     }
 }

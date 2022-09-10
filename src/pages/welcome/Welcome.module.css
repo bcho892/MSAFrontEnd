@@ -43,3 +43,22 @@
     color: var(--lightblue);
 }
 
+@media only screen and (max-width: 600px){
+
+    .container p {
+        padding: 0;
+        font-size: 1rem;
+        min-width: none;
+        width: 300px;
+    }
+
+    .skillholder{
+        padding: 0;
+    }
+}
+
+@media only screen and (max-width: 320px){
+    .container h2{
+        font-size: 2rem;
+    }
+}
